@@ -9,6 +9,10 @@ All notable changes to Nord Lane. The format follows [Keep a Changelog](https://
 - CI checks that the committed `theme.css` and `manifest.json` match the source, and that the manifest and cover meet Obsidian's requirements.
 - `AGENTS.md`: the rules for agents working in this repo.
 
+### Fixed
+
+- Callout titles and icons take their type's Nord colour again (Obsidian 1.15 reads `--callout-color` as a whole colour), and the tint behind each callout is a little stronger, so a warning no longer looks like a note.
+
 ## [1.0.0] - 2026-11-09
 
 ### Added

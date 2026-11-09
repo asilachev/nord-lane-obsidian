@@ -500,10 +500,14 @@ body .dataview.inline-field-value { color: var(--text-normal); padding: 0 0 0 0.
 
 /* ---------- 8. Callouts, tasks, tags ---------- */
 
+/* Callouts are tinted and titled in their type's Nord colour (the --callout-* values in
+   section 3 are r, g, b triplets). Obsidian 1.15 reads --callout-color as a whole colour for
+   the title, which a triplet isn't, so the title takes rgb() of it here; that works with
+   either form Obsidian uses. */
 .callout {
-  background-color: rgba(var(--callout-color), 0.09);
+  background-color: rgba(var(--callout-color), 0.11);
 }
-.callout-title { gap: 8px; }
+.callout-title { gap: 8px; color: rgb(var(--callout-color)); }
 .callout-content > :first-child { margin-top: 0.2em; }
 
 .markdown-rendered .task-list-item-checkbox,
