@@ -6,7 +6,7 @@ All notable changes to Nord Lane. The format follows [Keep a Changelog](https://
 
 ### Added
 
-- A website at nordlane.silachev.com in English, Spanish, German, Russian and Serbian (`site/`), built by `scripts/build-site.mjs` and deployed to GitHub Pages. Its screenshots are the real app in each language, taken by `scripts/site-shots.mjs`.
+- A website at nord-lane.silachev.com in English, Spanish, German, Russian and Serbian (`site/`), built by `scripts/build-site.mjs` and deployed to GitHub Pages. Its screenshots are the real app in each language, taken by `scripts/site-shots.mjs`.
 - `.gc-card.is-row`: a cover card on its side, the cover in a 72 px column and `.gc-body` beside it, for one book next to a heatmap or in a narrow column.
 - CI checks that the committed `theme.css` and `manifest.json` match the source, and that the manifest and cover meet Obsidian's requirements.
 - `AGENTS.md`: the rules for agents working in this repo.

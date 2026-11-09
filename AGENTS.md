@@ -14,7 +14,7 @@ Nord Lane is an Obsidian theme on the Nord palette. This file applies to every a
 | `screenshots/` | README images, taken from `demo/` |
 | `demo/` | A vault of made-up sample notes for checks and screenshots |
 | `tools/live/` | Drives a separate Obsidian over the DevTools protocol: screenshots, CSS inspection, phone emulation |
-| `site/` | The landing page at nordlane.silachev.com: the template `index.html`, `styles.css`, `favicon.svg`, the texts in `locales/{en,es,de,ru,sr}.json` (Serbian in Cyrillic) and the screenshots in `screenshots/<lang>/`, plus the four book covers the screenshots show in `covers/` (not published on their own) |
+| `site/` | The landing page at nord-lane.silachev.com: the template `index.html`, `styles.css`, `favicon.svg`, the texts in `locales/{en,es,de,ru,sr}.json` (Serbian in Cyrillic) and the screenshots in `screenshots/<lang>/`, plus the four book covers the screenshots show in `covers/` (not published on their own) |
 | `scripts/build-site.mjs` | Renders `site/` into `_site/` (gitignored), once per language; fails on a missing text, a leftover placeholder or a missing file |
 | `scripts/site-shots.mjs` | Takes `site/screenshots/<lang>/` from the real app: a throwaway vault per language, written from the `demo` texts in each locale, run through `tools/live/site.mjs` |
 | `.github/workflows/pages.yml` | Builds the landing page on pull requests and deploys it to GitHub Pages from `master` |

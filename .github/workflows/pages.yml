@@ -1,6 +1,6 @@
 name: Pages
 
-# The landing page (site/) on GitHub Pages, in five languages: https://nordlane.silachev.com/ (#17).
+# The landing page (site/) on GitHub Pages, in five languages: https://nord-lane.silachev.com/ (#17).
 # Its screenshots are the real app in each language. Obsidian doesn't run here, so they're taken
 # locally with node scripts/site-shots.mjs and committed under site/screenshots/. Pull requests
 # build the site to prove it; master deploys it.

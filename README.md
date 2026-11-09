@@ -2,7 +2,7 @@
 
 A calm, wide Obsidian theme on the [Nord](https://www.nordtheme.com) palette. Text, tables, Dataview output and embeds line up in one column, in light and dark, and your phone shows exactly what your desktop does.
 
-**[Install](#install)** · [Website](https://nordlane.silachev.com) · [Options](#options) · [Components](docs/components.md) · [Changelog](CHANGELOG.md)
+**[Install](#install)** · [Website](https://nord-lane.silachev.com) · [Options](#options) · [Components](docs/components.md) · [Changelog](CHANGELOG.md)
 
 ![The same note in Nord Lane, light on the left and dark on the right](screenshots/hero.png)
 

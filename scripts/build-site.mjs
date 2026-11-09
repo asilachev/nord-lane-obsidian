@@ -17,7 +17,7 @@ import { fileURLToPath } from 'node:url'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
 const out = `${root}_site/`
-const SITE_URL = 'https://nordlane.silachev.com/'
+const SITE_URL = 'https://nord-lane.silachev.com/'
 const STORAGE_KEY = 'nordlane-site:lang'
 const REPO = 'https://github.com/asilachev/nord-lane-obsidian'
 
