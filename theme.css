@@ -430,17 +430,21 @@ body.is-mobile {
   padding-inline-start: 1em;
 }
 
-/* Properties in reading view follow Obsidian's own setting (Properties in document) and
-   are set quietly, like the frontmatter in Live Preview: 13 px, keys in monospace (values
-   keep the text font, which Obsidian sizes date fields for), muted. A note keeps them out
+/* Properties follow Obsidian's own setting (Properties in document) and are set quietly in
+   both views, like the YAML frontmatter: --nl-frontmatter-size, keys in monospace (values
+   keep the text font, which Obsidian sizes date fields for), muted, hairline dividers. A note keeps them out
    of reading view with cssclasses: [hide-properties]; dashboards ([dashboard]) do. Adding a
    property is for editing, so its button stays out of reading view. */
-.markdown-preview-view {
+.markdown-preview-view,
+.markdown-source-view.mod-cm6 {
   --metadata-label-font: var(--font-monospace);
   --metadata-label-font-size: var(--nl-frontmatter-size);
   --metadata-input-font-size: var(--nl-frontmatter-size);
   --metadata-label-text-color: var(--text-faint);
+  --metadata-label-text-color-hover: var(--text-muted);
   --metadata-input-text-color: var(--text-muted);
+  --metadata-divider-color: var(--nl-hair);
+  --metadata-property-background-hover: var(--nl-hover);
 }
 .markdown-preview-view:is(.dashboard, .hide-properties) { --metadata-display-reading: none; }
 .markdown-preview-view .metadata-add-button { display: none; }

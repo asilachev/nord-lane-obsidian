@@ -21,6 +21,7 @@ All notable changes to Nord Lane. The format follows [Keep a Changelog](https://
 
 - Cover-card filters are generic. A view hides the cards that don't match by setting the `hidden` attribute, and the theme hides `.gc-card[hidden]`. The four rules that matched particular `data-filter` values are gone, so a view that relied on them must now set `hidden`.
 
+- The Properties view is set the same way in Live Preview, when properties are visible rather than shown as source: frontmatter-size text, monospace keys, muted, hairline dividers and a Nord hover.
 - The `## Meta` strip in reading view is opt-in: Style Settings, Nord Lane, Meta strip (it adds `nl-meta-strip` to the body). It was keyed on the heading's text and applied to every vault.
 
 ### Removed
