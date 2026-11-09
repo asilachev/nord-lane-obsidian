@@ -16,6 +16,8 @@ All notable changes to Nord Lane. The format follows [Keep a Changelog](https://
 
 - Colours meet WCAG AA everywhere text sits on them. Light mode: callout titles, the green and amber tones, the accent fill behind badges, and the darkest heat shade are a step darker. Dark mode: the error and question callouts and faint text are a step lighter, and the middle heat shade is lighter, with dark text. New `--nl-on-heat-1/2/3` tokens set the text colour on each heat shade.
 
+- Cover-card filters are generic. A view hides the cards that don't match by setting the `hidden` attribute, and the theme hides `.gc-card[hidden]`. The four rules that matched particular `data-filter` values are gone, so a view that relied on them must now set `hidden`.
+
 ### Removed
 
 - The `show_properties` and `show_add_property_btn` classes. Properties show by Obsidian's setting now, so opting in is no longer needed.

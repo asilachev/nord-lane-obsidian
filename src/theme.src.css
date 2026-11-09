@@ -1054,10 +1054,9 @@ img.nl-thumb { background: transparent; }
 }
 .gc-filter.is-active { border-color: var(--nl-ink); background: var(--nl-ink); color: var(--nl-bg); font-weight: 600; }
 .gc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; margin: 0 0 1em; }
-.gc-grid[data-filter="BEG"] .gc-card:not([data-loc~="BEG"]),
-.gc-grid[data-filter="LED"] .gc-card:not([data-loc~="LED"]),
-.gc-grid[data-filter="sealed"] .gc-card:not([data-state="sealed"]),
-.gc-grid[data-filter="order"] .gc-card:not([data-state="order"]) { display: none; }
+/* A view filters cards by setting the hidden attribute on those that don't match; the
+   card's own display: flex would otherwise win over the browser's [hidden] rule. */
+.gc-card[hidden] { display: none; }
 .gc-card {
   display: flex;
   flex-direction: column;
