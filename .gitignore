@@ -6,3 +6,7 @@ __pycache__/
 demo/.obsidian/themes/
 demo/.obsidian/workspace*.json
 demo/.obsidian/core-plugins.json
+
+# The live harness: screenshots and the test Obsidian's own settings folder.
+tools/live/shots/
+tools/live/userdata/
