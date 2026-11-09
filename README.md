@@ -8,7 +8,7 @@ A calm, wide Obsidian theme on the [Nord](https://www.nordtheme.com) palette, wi
 
 ## What it does
 
-- **Nord, light and dark.** Light mode puts every background on nord6.5 (`#F6F7FA`, halfway between nord6 and white) and separates areas with nord4 hairlines. Dark mode is Polar Night. Accents come from Frost and states from Aurora; where a Nord colour is too light for small text, the text takes a darker step of the same hue.
+- **Nord, light and dark.** Light mode puts every background on nord6a (`#F6F7FA`, halfway between nord6 and white) and separates areas with nord4 hairlines. Dark mode is Polar Night. Accents come from Frost and states from Aurora; where a Nord colour is too light for small text, the text takes a darker step of the same hue.
 - **One column.** Text, tables, Dataview output and embeds share the same edges, up to 75rem, and less on a narrower pane. Live Preview and reading view look the same.
 - **One table style** for markdown tables, Dataview tables and the Live Preview table editor: 15 px text, quiet uppercase headers, hairline rows, tabular numbers. Dataview's `-` placeholders show as a faint dash instead of an empty bullet. In a pane under 700 px, tables drop to 14 px, and wide ones keep a readable width and scroll sideways.
 - **The same type everywhere.** Geist and Geist Mono are embedded, Latin and Cyrillic, so the iPhone and iPad render exactly what the Mac does.

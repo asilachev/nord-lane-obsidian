@@ -9,7 +9,7 @@ updated: 2026-11-09
 
 # Field notes
 
-Nord Lane is a calm, wide theme on the [Nord](https://www.nordtheme.com) palette. Light mode sits on **nord6.5**, a step lighter than Snow Storm, and dark mode on Polar Night. Text, tables and embeds share one column, so nothing juts out past the paragraph above it.
+Nord Lane is a calm, wide theme on the [Nord](https://www.nordtheme.com) palette. Light mode sits on **nord6a**, a step lighter than Snow Storm, and dark mode on Polar Night. Text, tables and embeds share one column, so nothing juts out past the paragraph above it.
 
 ## This week
 

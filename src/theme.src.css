@@ -1,7 +1,7 @@
 /* ==========================================================================
    Nord Lane: an Obsidian theme on the Nord palette.
 
-   Light mode puts every background on nord6.5 (#F6F7FA, halfway from nord6 to
+   Light mode puts every background on nord6a (#F6F7FA, halfway from nord6 to
    white) and separates areas with nord4 hairlines. Dark mode is Polar Night.
    Accents come from Frost, states from Aurora. Where a Nord colour is too light
    for small text on its background, the text uses a darker step of the same hue.
@@ -162,10 +162,10 @@ body.is-mobile {
   --file-margins: 16px var(--nl-gutter) 48px;
 }
 
-/* ---------- 2. Light: nord6.5 for every background ---------- */
+/* ---------- 2. Light: nord6a for every background ---------- */
 
 .theme-light {
-  --nl-bg: #F6F7FA;          /* nord6.5, added */
+  --nl-bg: #F6F7FA;          /* nord6a, added */
   --nl-band: #ECEFF4;        /* nord6: code, table group bands */
   --nl-hover: #E5E9F0;       /* nord5: hover, active */
   --nl-hair: #D8DEE9;        /* nord4: hairlines */
