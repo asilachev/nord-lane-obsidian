@@ -1,0 +1,1284 @@
+/* ==========================================================================
+   Nord Lane: an Obsidian theme on the Nord palette.
+
+   Light mode puts every background on nord6.5 (#F6F7FA, halfway from nord6 to
+   white) and separates areas with nord4 hairlines. Dark mode is Polar Night.
+   Accents come from Frost, states from Aurora. Where a Nord colour is too light
+   for small text on its background, the text uses a darker step of the same hue.
+
+   Source: src/theme.src.css in https://github.com/asilachev/nord-lane-obsidian.
+   build.py embeds the Geist fonts and writes theme.css (and, given a vault path,
+   installs it there); edit this file, not the built one.
+   ========================================================================== */
+
+/* ---------- 1. Type, sizes, shapes (both modes) ---------- */
+
+body {
+  --font-text-theme: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-interface-theme: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-monospace-theme: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --line-height-normal: 1.6;
+  --line-height-tight: 1.3;
+
+  --h1-size: 1.875em; --h1-weight: 600; --h1-line-height: 1.15; --h1-letter-spacing: -0.025em;
+  --h2-size: 1.3125em; --h2-weight: 600; --h2-line-height: 1.25; --h2-letter-spacing: -0.02em;
+  --h3-size: 1.03em; --h3-weight: 600; --h3-line-height: 1.35; --h3-letter-spacing: -0.01em;
+  --h4-size: 0.95em; --h4-weight: 600; --h4-line-height: 1.4;
+  --h5-size: 0.85em; --h5-weight: 600;
+  --h6-size: 0.85em; --h6-weight: 600;
+  --inline-title-size: var(--h1-size);
+  --inline-title-weight: 600;
+  --inline-title-letter-spacing: -0.025em;
+
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --radius-l: 12px;
+
+  --link-decoration: none;
+  --link-decoration-hover: underline;
+  --link-external-decoration: none;
+  --link-external-decoration-hover: underline;
+  --link-unresolved-opacity: 0.65;
+  --link-unresolved-decoration-style: dotted;
+
+  --tag-size: 0.82em;
+  --tag-weight: 500;
+  --tag-radius: 999px;
+  --tag-padding-x: 0.6em;
+  --tag-padding-y: 0.15em;
+  --tag-border-width: 0;
+  --tag-decoration: none;
+  --tag-decoration-hover: none;
+
+  --code-size: 0.86em;
+  --code-radius: 4px;
+
+  --checkbox-radius: 4px;
+  --checklist-done-decoration: none;
+
+  --callout-radius: 8px;
+  --callout-border-width: 0;
+  --callout-padding: 12px 16px;
+  --callout-title-weight: 600;
+  --callout-blend-mode: normal;
+
+  --blockquote-border-thickness: 2px;
+  --list-spacing: 0.15em;
+
+  --table-header-size: 11px;
+  --table-header-weight: 600;
+  --table-text-size: 15px;
+
+  --nav-item-size: 13px;
+  --nav-item-weight-active: 500;
+  --tab-font-size: 13px;
+  --status-bar-font-size: 12px;
+
+  /* Width: text, tables, Dataview and cards share one column, up to --nl-col-max and
+     never wider than the pane less the gutters. --nl-bleed lets tables and Dataview hang
+     past the text on each side; 0 keeps one edge for everything. */
+  --nl-gutter: 2.5rem;
+  --nl-col-max: 75rem;
+  --nl-bleed: 0px;
+  /* Obsidian pads the reading view and the editor with --file-margins: the sides are the
+     gutter, so a note's edge sits one gutter from the pane's edge, never two. */
+  --file-margins: 32px var(--nl-gutter);
+}
+
+body.is-mobile {
+  --nl-gutter: 1rem;
+  --file-margins: 16px var(--nl-gutter) 48px;
+}
+
+/* ---------- 2. Light: nord6.5 for every background ---------- */
+
+.theme-light {
+  --nl-bg: #F6F7FA;          /* nord6.5, added */
+  --nl-band: #ECEFF4;        /* nord6: code, table group bands */
+  --nl-hover: #E5E9F0;       /* nord5: hover, active */
+  --nl-hair: #D8DEE9;        /* nord4: hairlines */
+  --nl-rule: #C4CCD8;        /* table header rule */
+  --nl-ink: #2E3440;         /* nord0: headings, bold */
+  --nl-ink-2: #3B4252;       /* nord1: body text */
+  --nl-muted: #4C566A;       /* nord3 */
+  --nl-faint: #7B8496;
+  --nl-accent: #4B6A92;      /* nord10, a step darker so links reach 4.8:1 */
+  --nl-accent-fill: #5E81AC; /* nord10 */
+  --nl-accent-ink: #3B5A84;
+  --nl-accent-soft: #D6E2EE;
+  --nl-on-accent: #FFFFFF;
+  --nl-green: #58744A;  --nl-green-soft: #E2EADA;
+  --nl-amber: #8C6418;  --nl-amber-soft: #F4EBD6;
+  --nl-red: #A5434D;    --nl-red-soft: #F3DEE0;
+  --nl-violet: #86607F; --nl-violet-soft: #EDE4EC;
+  --nl-heat-1: #B7C9DD; --nl-heat-2: #81A1C1; --nl-heat-3: #5E81AC;
+  --nl-shadow: 0 1px 2px rgba(46, 52, 64, 0.06);
+
+  --color-base-00: #F6F7FA; --color-base-05: #F2F4F8; --color-base-10: #ECEFF4;
+  --color-base-20: #E5E9F0; --color-base-25: #DDE2EA; --color-base-30: #D8DEE9;
+  --color-base-35: #C4CCD8; --color-base-40: #A9B2C1; --color-base-50: #7B8496;
+  --color-base-60: #5F6879; --color-base-70: #4C566A; --color-base-100: #2E3440;
+
+  --accent-h: 214; --accent-s: 32%; --accent-l: 43%;
+
+  --callout-default: 75, 106, 146;   --callout-note: 75, 106, 146;
+  --callout-info: 75, 106, 146;      --callout-todo: 75, 106, 146;
+  --callout-summary: 75, 106, 146;   --callout-important: 75, 106, 146;
+  --callout-tip: 88, 116, 74;        --callout-success: 88, 116, 74;
+  --callout-question: 134, 96, 127;  --callout-example: 134, 96, 127;
+  --callout-warning: 140, 100, 24;
+  --callout-fail: 165, 67, 77;       --callout-error: 165, 67, 77;    --callout-bug: 165, 67, 77;
+  --callout-quote: 76, 86, 106;
+}
+
+/* ---------- 3. Dark: Polar Night ---------- */
+
+.theme-dark {
+  --nl-bg: #2E3440;          /* nord0 */
+  --nl-side: #3B4252;        /* nord1: sidebars, cards */
+  --nl-band: #3B4252;        /* nord1 */
+  --nl-hover: #434C5E;       /* nord2 */
+  --nl-hair: #434C5E;        /* nord2 */
+  --nl-rule: #4C566A;        /* nord3 */
+  --nl-ink: #ECEFF4;         /* nord6 */
+  --nl-ink-2: #D8DEE9;       /* nord4 */
+  --nl-muted: #A7B0C0;
+  --nl-faint: #7F899C;
+  --nl-accent: #88C0D0;      /* nord8 */
+  --nl-accent-fill: #88C0D0;
+  --nl-accent-ink: #9CCBD8;
+  --nl-accent-soft: #39495B;
+  --nl-on-accent: #2E3440;
+  --nl-green: #A3BE8C;  --nl-green-soft: #394236;
+  --nl-amber: #EBCB8B;  --nl-amber-soft: #47422F;
+  --nl-red: #D88F96;    --nl-red-soft: #4A3438;
+  --nl-violet: #B48EAD; --nl-violet-soft: #413A48;
+  --nl-heat-1: #4A6380; --nl-heat-2: #5E81AC; --nl-heat-3: #88C0D0;
+  --nl-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+
+  --color-base-00: #2E3440; --color-base-05: #2B303B; --color-base-10: #313744;
+  --color-base-20: #3B4252; --color-base-25: #3F4758; --color-base-30: #434C5E;
+  --color-base-35: #4C566A; --color-base-40: #5B6579; --color-base-50: #7F899C;
+  --color-base-60: #A7B0C0; --color-base-70: #D8DEE9; --color-base-100: #ECEFF4;
+
+  --accent-h: 193; --accent-s: 43%; --accent-l: 67%;
+
+  --callout-default: 136, 192, 208;  --callout-note: 136, 192, 208;
+  --callout-info: 129, 161, 193;     --callout-todo: 136, 192, 208;
+  --callout-summary: 143, 188, 187;  --callout-important: 143, 188, 187;
+  --callout-tip: 163, 190, 140;      --callout-success: 163, 190, 140;
+  --callout-question: 180, 142, 173; --callout-example: 180, 142, 173;
+  --callout-warning: 235, 203, 139;
+  --callout-fail: 191, 97, 106;      --callout-error: 191, 97, 106;   --callout-bug: 191, 97, 106;
+  --callout-quote: 167, 176, 192;
+}
+
+/* ---------- 4. Obsidian variables from the tokens (both modes) ---------- */
+
+.theme-light, .theme-dark {
+  --background-primary: var(--nl-bg);
+  --background-primary-alt: var(--nl-band);
+  --background-secondary: var(--nl-side, var(--nl-bg));
+  --background-secondary-alt: var(--nl-band);
+  --background-modifier-hover: var(--nl-hover);
+  --background-modifier-active-hover: var(--nl-accent-soft);
+  --background-modifier-border: var(--nl-hair);
+  --background-modifier-border-hover: var(--nl-rule);
+  --background-modifier-border-focus: var(--nl-accent-fill);
+  --background-modifier-form-field: var(--nl-bg);
+  --background-modifier-error: var(--nl-red);
+  --background-modifier-success: var(--nl-green);
+
+  --text-normal: var(--nl-ink-2);
+  --text-muted: var(--nl-muted);
+  --text-faint: var(--nl-faint);
+  --text-accent: var(--nl-accent);
+  --text-accent-hover: var(--nl-accent-ink);
+  --text-on-accent: var(--nl-on-accent);
+  --text-error: var(--nl-red);
+  --text-success: var(--nl-green);
+  --text-warning: var(--nl-amber);
+  --text-selection: rgba(94, 129, 172, 0.24);
+  --text-highlight-bg: rgba(235, 203, 139, 0.45);
+
+  --interactive-normal: var(--nl-bg);
+  --interactive-hover: var(--nl-hover);
+  --interactive-accent: var(--nl-accent-fill);
+  --interactive-accent-hover: var(--nl-accent);
+
+  --color-red: #BF616A;    --color-red-rgb: 191, 97, 106;
+  --color-orange: #D08770; --color-orange-rgb: 208, 135, 112;
+  --color-yellow: #EBCB8B; --color-yellow-rgb: 235, 203, 139;
+  --color-green: #A3BE8C;  --color-green-rgb: 163, 190, 140;
+  --color-cyan: #88C0D0;   --color-cyan-rgb: 136, 192, 208;
+  --color-blue: #5E81AC;   --color-blue-rgb: 94, 129, 172;
+  --color-purple: #B48EAD; --color-purple-rgb: 180, 142, 173;
+  --color-pink: #B48EAD;   --color-pink-rgb: 180, 142, 173;
+
+  --h1-color: var(--nl-ink); --h2-color: var(--nl-ink); --h3-color: var(--nl-ink);
+  --h4-color: var(--nl-ink); --h5-color: var(--nl-ink); --h6-color: var(--nl-muted);
+  --inline-title-color: var(--nl-ink);
+  --bold-color: var(--nl-ink);
+
+  --link-color: var(--nl-accent);
+  --link-color-hover: var(--nl-accent-ink);
+  --link-external-color: var(--nl-accent);
+  --link-external-color-hover: var(--nl-accent-ink);
+  --link-unresolved-color: var(--nl-accent);
+
+  --tag-color: var(--nl-accent-ink);
+  --tag-color-hover: var(--nl-accent-ink);
+  --tag-background: var(--nl-accent-soft);
+  --tag-background-hover: var(--nl-accent-soft);
+
+  --code-background: var(--nl-band);
+  --code-normal: var(--nl-ink-2);
+
+  --blockquote-border-color: var(--nl-rule);
+  --blockquote-color: var(--nl-muted);
+  --hr-color: var(--nl-hair);
+
+  --checkbox-color: var(--nl-accent-fill);
+  --checkbox-color-hover: var(--nl-accent);
+  --checkbox-border-color: var(--nl-rule);
+  --checkbox-border-color-hover: var(--nl-accent-fill);
+  --checkbox-marker-color: var(--nl-on-accent);
+  --checklist-done-color: var(--nl-muted);
+
+  --list-marker-color: var(--nl-faint);
+  --list-marker-color-hover: var(--nl-muted);
+  --list-marker-color-collapsed: var(--nl-accent);
+
+  --table-border-width: 0;
+  --table-header-border-width: 0;
+  --table-header-color: var(--nl-muted);
+  --table-header-background: transparent;
+  --table-header-background-hover: transparent;
+  --table-row-background-hover: transparent;
+  --table-border-color: var(--nl-hair);
+
+  --nav-item-color: var(--nl-muted);
+  --nav-item-color-hover: var(--nl-ink);
+  --nav-item-color-active: var(--nl-accent-ink);
+  --nav-item-color-selected: var(--nl-ink);
+  --nav-item-background-hover: var(--nl-hover);
+  --nav-item-background-active: var(--nl-accent-soft);
+  --nav-item-background-selected: var(--nl-hover);
+  --nav-indentation-guide-color: var(--nl-hair);
+  --nav-collapse-icon-color: var(--nl-faint);
+  --nav-collapse-icon-color-collapsed: var(--nl-faint);
+
+  --tab-background-active: var(--nl-bg);
+  --tab-text-color: var(--nl-muted);
+  --tab-text-color-active: var(--nl-ink-2);
+  --tab-text-color-focused: var(--nl-ink-2);
+  --tab-text-color-focused-active: var(--nl-ink);
+  --tab-text-color-focused-active-current: var(--nl-ink);
+  --tab-outline-color: var(--nl-hair);
+  --tab-divider-color: transparent;
+  --tab-container-background: var(--background-secondary);
+
+  --titlebar-background: var(--background-secondary);
+  --titlebar-background-focused: var(--background-secondary);
+  --titlebar-border-color: var(--nl-hair);
+  --ribbon-background: var(--background-secondary);
+  --ribbon-background-collapsed: var(--background-secondary);
+  --status-bar-background: var(--background-secondary);
+  --status-bar-border-color: var(--nl-hair);
+  --status-bar-text-color: var(--nl-muted);
+  --divider-color: var(--nl-hair);
+  --modal-background: var(--nl-bg);
+  --modal-border-color: var(--nl-hair);
+
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: rgba(127, 137, 156, 0.28);
+  --scrollbar-active-thumb-bg: rgba(127, 137, 156, 0.5);
+}
+
+/* ---------- 5. Width: one column for text and data ---------- */
+
+/* Every note, dashboards included, is one column: up to --nl-col-max (75rem, the midpoint
+   of the old 60rem text and 90rem lane), less on a narrower pane. */
+.markdown-preview-view,
+.markdown-source-view.mod-cm6 {
+  container: note / inline-size;
+  --file-line-width: var(--nl-col-max);
+  --nl-lane: calc(var(--file-line-width) + 2 * var(--nl-bleed));
+}
+
+/* The width a lane may take. The reading view is padded itself, so its content box is
+   already inside the margins; in the editor the padding sits on .cm-scroller inside. */
+.markdown-preview-view { --nl-avail: 100cqw; }
+.markdown-source-view.mod-cm6 { --nl-avail: calc(100cqw - 2 * var(--nl-gutter)); }
+
+/* Tables, Dataview output and anything marked .nl-lane take the text column plus
+   --nl-bleed each side, centred on the text, never wider than the pane allows. */
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > div:is(.el-table, :has(> .block-language-dataview), :has(> .block-language-dataviewjs), :has(> .nl-lane)) {
+  --nl-w: min(var(--nl-lane), var(--nl-avail));
+  width: var(--nl-w);
+  max-width: none;
+  margin-inline: calc((100% - var(--nl-w)) / 2);
+}
+
+/* cssclasses: [full] uses the whole pane, less the gutter. The old Minimal classes
+   (wide, table-wide) need nothing now: every note gets the one column. */
+.markdown-preview-view.full,
+.markdown-source-view.mod-cm6.full {
+  --file-line-width: var(--nl-avail);
+}
+
+/* ---------- 6. Reading surface ---------- */
+
+.markdown-rendered {
+  font-feature-settings: "ss01" 0;
+}
+
+.markdown-rendered h1, .markdown-rendered h2 { margin-block-start: 1.6em; }
+.markdown-rendered h3 { margin-block-start: 1.4em; }
+.markdown-rendered strong { font-weight: 600; }
+
+.markdown-rendered code {
+  padding: 0.1em 0.35em;
+}
+
+.markdown-rendered blockquote {
+  padding-inline-start: 1em;
+}
+
+/* Properties stay out of reading view unless the note asks for them. */
+.workspace-leaf-content[data-mode="preview"] .markdown-preview-view .metadata-container { display: none; }
+.workspace-leaf-content[data-mode="preview"] .markdown-preview-view.show_properties .metadata-container { display: block; }
+.workspace-leaf-content[data-mode="preview"] .markdown-preview-view .metadata-add-button { display: none; }
+.workspace-leaf-content[data-mode="preview"] .markdown-preview-view.show_add_property_btn .metadata-add-button { display: inline-flex; }
+
+/* The ## Meta list becomes one quiet strip in reading view. */
+.markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) { display: none; }
+.markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) + .el-ul > ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  margin: 0 0 1.4em;
+  padding: 9px 0;
+  list-style: none;
+  border-block: 1px solid var(--nl-hair);
+  font-size: 0.85em;
+  color: var(--text-muted);
+}
+.markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) + .el-ul > ul > li {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) + .el-ul > ul > li::marker { content: none; }
+.markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) + .el-ul > ul > li > .list-bullet,
+.markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) + .el-ul > ul > li > .list-collapse-indicator { display: none; }
+.markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) + .el-ul > ul > li:last-child:not(:first-child) { flex: 1 1 0; min-width: 16rem; }
+
+/* Dataview inline fields: one outlined chip per key and value. */
+body .dataview.inline-field {
+  display: inline-block;
+  margin: 0 0.4em 0.15em 0;
+  padding: 0 0.45em;
+  border: 1px solid var(--nl-hair);
+  border-radius: var(--radius-s);
+  max-width: 100%;
+  line-height: 1.55;
+}
+/* Dataview's own CSS boxes key and value separately in monospace; inside the chip they
+   are plain text in the note's font. */
+body .dataview:is(.inline-field-key, .inline-field-value, .inline-field-standalone-value) {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  font-size: inherit;
+}
+body .dataview.inline-field-key { color: var(--text-faint); }
+body .dataview.inline-field-key::after { content: ""; margin: 0; }
+body .dataview.inline-field-value { color: var(--text-normal); padding: 0 0 0 0.4em; }
+
+/* ---------- 7. Tables: one style for markdown, Dataview and dashboard (nl-table) tables ---------- */
+
+.markdown-rendered table,
+.markdown-source-view.mod-cm6 .cm-table-widget table,
+.nl-table {
+  border-collapse: collapse;
+  font-size: var(--table-text-size);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.45;
+}
+
+.markdown-rendered table { width: 100%; }
+
+.markdown-rendered th,
+.markdown-rendered .table-view-table > thead > tr > th,
+.markdown-source-view.mod-cm6 .cm-table-widget th,
+.nl-table th {
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 0;
+  border-bottom: 1px solid var(--nl-rule);
+  background: var(--background-primary);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-align: start;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.markdown-rendered td,
+.markdown-rendered .table-view-table > tbody > tr > td,
+.markdown-source-view.mod-cm6 .cm-table-widget td,
+.nl-table td {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 8px 12px;
+  border: 0;
+  border-bottom: 1px solid var(--nl-hair);
+  vertical-align: middle;
+}
+
+.markdown-rendered :is(th, td):first-child, .nl-table :is(th, td):first-child { padding-inline-start: 0; }
+.markdown-rendered :is(th, td):last-child, .nl-table :is(th, td):last-child { padding-inline-end: 0; }
+
+.markdown-rendered .table-view-table { width: 100%; }
+
+/* Dataview renders each cell as markdown, so a "-" placeholder becomes a list with one empty
+   item: a bullet plus list margins that double the row. Show it as the dash it was meant to
+   be, and keep real lists in cells tight, so every row keeps one height. */
+.markdown-rendered td :is(ul, ol) { margin: 0; padding-inline-start: 1.1em; white-space: normal; } /* Dataview cells keep line breaks; inside a list they're blank lines */
+.markdown-rendered td li { margin: 0; padding-block: 0; }
+.markdown-rendered td ul:has(> li:only-child:empty) { display: inline; padding: 0; list-style: none; }
+.markdown-rendered td li:only-child:empty { display: inline; }
+.markdown-rendered td li:only-child:empty::before { content: "–"; color: var(--text-faint); }
+.markdown-rendered .table-view-table .dataview-result-list-count,
+.markdown-rendered .table-view-table th .small-text { color: var(--text-faint); font-weight: 600; }
+
+/* Header stays in view while a long table scrolls (reading view). */
+.markdown-preview-view :is(.el-table, .block-language-dataview, .block-language-dataviewjs) thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* Monospace tables: cssclasses: [table-mono], for ledgers and other number-heavy notes. */
+.table-mono table:not(.calendar) {
+  font-family: var(--font-monospace);
+  --table-text-size: 90%;
+}
+
+/* Live Preview (the vault's default view) breaks tables and Dataview blocks out to the
+   same lane as reading view. Obsidian pins every editor block's margins with !important
+   (CodeMirror can't measure vertical margins); horizontal ones are safe to override.
+   The table widget keeps Obsidian's 16 px strips either side for its drag handles. */
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-content > :is(.cm-preview-code-block.cm-lang-dataview, .cm-preview-code-block.cm-lang-dataviewjs) {
+  --nl-w: min(var(--nl-lane), var(--nl-avail));
+  width: var(--nl-w);
+  max-width: none;
+  margin-inline: calc((100% - var(--nl-w)) / 2) !important;
+}
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-content > .cm-table-widget {
+  --nl-w: min(var(--nl-lane), var(--nl-avail));
+  width: calc(var(--nl-w) + 32px);
+  max-width: none;
+  margin-inline: calc((100% - var(--nl-w)) / 2 - 16px) !important;
+}
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-content > .cm-table-widget .table-wrapper { width: auto; }
+.markdown-source-view.mod-cm6 .cm-table-widget { overflow-x: auto; }
+
+/* The frontmatter, for vaults that show properties as YAML source. One size on every page,
+   13 px monospace in the muted ink, so it reads as data, not as the note. Obsidian sets the
+   text to --font-smaller inside the line; inheriting keeps it from shrinking twice. */
+.markdown-source-view.mod-cm6 .cm-line:has(> .cm-hmd-frontmatter) { font-size: 13px; line-height: 1.6; }
+.markdown-source-view.mod-cm6 .cm-hmd-frontmatter { color: var(--text-muted); font-size: inherit; }
+
+/* ---------- 8. Callouts, tasks, tags ---------- */
+
+.callout {
+  background-color: rgba(var(--callout-color), 0.09);
+}
+.callout-title { gap: 8px; }
+.callout-content > :first-child { margin-top: 0.2em; }
+
+.markdown-rendered .task-list-item-checkbox,
+.markdown-source-view .task-list-item-checkbox {
+  border-width: 1.5px;
+}
+
+a.tag { font-weight: var(--tag-weight); }
+
+/* ---------- 9. Workspace chrome ---------- */
+
+.workspace-tab-header.is-active {
+  box-shadow: none;
+}
+.workspace-tab-header-container {
+  border-bottom: 1px solid var(--nl-hair);
+}
+.workspace-ribbon.mod-left {
+  border-right: 1px solid var(--nl-hair);
+}
+.workspace-split.mod-left-split .workspace-sidedock-vault-profile,
+.workspace-split.mod-left-split > .workspace-leaf-resize-handle,
+.workspace-split.mod-right-split > .workspace-leaf-resize-handle {
+  border-color: var(--nl-hair);
+}
+.nav-folder-title { color: var(--nl-ink-2); }
+.nav-file-title-content,
+.nav-folder-title-content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.nav-file-tag {
+  border: 1px solid var(--nl-rule);
+  background: transparent;
+  color: var(--text-faint);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+/* Recent files and other plugins add an empty tag for .md files; drawn, it is a stray dash. */
+.nav-file-tag:empty { display: none; }
+
+/* Calendar plugin (right sidebar) as a heat calendar, GitHub style: each day a square whose
+   shade follows how much its note holds (the plugin's dots: one per 250 words, up to five),
+   in the dashboard heatmap's blues; a day without a note is an outline. Equal columns, so
+   the month shrinks to any sidebar width; week numbers stay as small labels. */
+#calendar-container { max-width: 344px; margin: 0 auto; padding: 0 12px 12px; }
+#calendar-container .nav { flex-wrap: wrap; gap: 6px; margin: 6px 0 10px; padding: 0; }
+#calendar-container .title { margin: 0; color: var(--nl-ink); font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
+#calendar-container .title .year { color: var(--text-muted); font-weight: 500; }
+#calendar-container .right-nav { gap: 2px; }
+#calendar-container .arrow { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 6px; color: var(--text-muted); }
+#calendar-container .arrow svg { width: 8px; height: 12px; }
+#calendar-container .reset-button { margin: 0; padding: 2px 8px; border-radius: 999px; color: var(--text-muted); font-size: 11px; font-weight: 600; letter-spacing: 0.04em; }
+#calendar-container :is(.arrow, .reset-button):hover { background: var(--nl-hover); color: var(--text-normal); }
+#calendar-container table.calendar { width: calc(100% + 6px); margin: 0 -3px; table-layout: fixed; border-collapse: separate; border-spacing: 3px; }
+#calendar-container col:first-child { width: 20px; }
+#calendar-container col.weekend { background: none; }
+#calendar-container :is(th, td) { padding: 0; border: 0; background: none; }
+#calendar-container th { padding-bottom: 3px; color: var(--text-faint); font-size: 9.5px; font-weight: 600; letter-spacing: 0.06em; text-align: center; }
+#calendar-container .day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  border-radius: 4px;
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--nl-hair);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+#calendar-container .day.has-note { background: var(--nl-heat-1); box-shadow: none; color: var(--nl-ink); }
+#calendar-container .day:has(.dot.filled:nth-of-type(2)) { background: var(--nl-heat-2); }
+#calendar-container .day:has(.dot.filled:nth-of-type(4)) { background: var(--nl-heat-3); color: var(--nl-on-accent); }
+#calendar-container .day.adjacent-month { opacity: 0.4; }
+#calendar-container .day:hover { box-shadow: inset 0 0 0 1.5px var(--nl-rule); }
+#calendar-container .day.today { box-shadow: inset 0 0 0 2px var(--nl-accent); font-weight: 700; }
+#calendar-container .day.active { box-shadow: 0 0 0 2px var(--nl-ink); }
+#calendar-container .week-num { padding: 0; border: 0; background: none; color: var(--text-faint); font-size: 9.5px; text-align: center; }
+#calendar-container .week-num.has-note { color: var(--nl-accent-ink); font-weight: 600; }
+#calendar-container :is(.day, .week-num) .dot-container { display: none; }
+#calendar-container::after { content: "Shade: words in that day's note"; display: block; margin-top: 8px; color: var(--text-faint); font-size: 11px; }
+.status-bar {
+  border-top-left-radius: var(--radius-m);
+}
+
+/* ==========================================================================
+   10. Dashboard kit: nl-* classes for dataviewjs dashboards (they do nothing unless a
+       view uses them).
+   ========================================================================== */
+
+.nl-page {
+  --nl-gap: 28px;
+  color: var(--text-normal);
+  font-size: 14px;
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+}
+.nl-page *, .nl-page *::before, .nl-page *::after { box-sizing: border-box; }
+.nl-page a.internal-link { color: var(--link-color); text-decoration: none; }
+.nl-page a.internal-link:hover { text-decoration: underline; }
+
+.nl-block { margin-block: var(--nl-gap) 0; }
+.nl-block:first-child { margin-block-start: 0; }
+
+/* Page head: title left, controls right; controls drop under the title when narrow. */
+.nl-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.nl-title {
+  margin: 0;
+  color: var(--nl-ink);
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+.nl-sub { margin-top: 4px; color: var(--text-muted); font-size: 13.5px; }
+.nl-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+/* Buttons, nav, chips. */
+.nl-page button { font: inherit; }
+.nl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 11px;
+  border: 1px solid var(--nl-rule);
+  border-radius: var(--radius-m);
+  background: var(--nl-bg);
+  box-shadow: none;
+  color: var(--text-normal);
+  font-size: 13px;
+  cursor: pointer;
+}
+.nl-btn:hover { background: var(--nl-hover); }
+.nl-btn svg { width: 14px; height: 14px; color: var(--text-muted); }
+.nl-link { color: var(--link-color); font-size: 13px; font-weight: 500; cursor: pointer; }
+
+.nl-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 36px;
+  padding: 0 3px;
+  border: 1px solid var(--nl-hair);
+  border-radius: var(--radius-m);
+}
+.nl-nav button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.nl-nav button:hover { background: var(--nl-hover); color: var(--text-normal); }
+.nl-nav button svg { width: 15px; height: 15px; }
+.nl-nav span { padding: 0 6px; color: var(--nl-ink); font-size: 13px; font-weight: 600; white-space: nowrap; }
+
+.nl-chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.nl-chip-btn {
+  height: 28px;
+  padding: 0 11px;
+  border: 1px solid var(--nl-rule);
+  border-radius: 999px;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text-normal);
+  font-size: 12.5px;
+  cursor: pointer;
+}
+.nl-chip-btn.is-active { border-color: var(--nl-ink); background: var(--nl-ink); color: var(--nl-bg); font-weight: 600; }
+
+/* Section head. */
+.nl-sec { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-block-end: 10px; }
+/* Section titles are the page's h2s: the same size as ## in a note, so a dashboard and a
+   note read at one scale. */
+.nl-sec-t { color: var(--nl-ink); font-size: 21px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.25; }
+.nl-sec-m { color: var(--text-muted); font-size: 12.5px; text-align: end; }
+
+/* Stat strip: 6 across, 3 at medium, 2 at narrow. */
+.nl-stats {
+  display: grid;
+  grid-template-columns: repeat(var(--nl-stat-cols, 6), minmax(0, 1fr));
+  border-block: 1px solid var(--nl-hair);
+}
+.nl-stat { min-width: 0; padding: 13px 18px; border-inline-start: 1px solid var(--nl-hair); }
+.nl-stat:nth-child(6n + 1) { padding-inline-start: 0; border-inline-start: 0; }
+.nl-stat-v { color: var(--nl-ink); font-size: 24px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+.nl-stat-l { margin-top: 2px; color: var(--text-normal); font-size: 12.5px; }
+.nl-stat-s { margin-top: 2px; color: var(--text-muted); font-size: 12px; }
+
+/* Tones. */
+.nl-tone-red { color: var(--nl-red) !important; }
+.nl-tone-amber { color: var(--nl-amber) !important; }
+.nl-tone-green { color: var(--nl-green) !important; }
+.nl-tone-accent { color: var(--nl-accent) !important; }
+.nl-faint { color: var(--text-faint); }
+.nl-muted { color: var(--text-muted); }
+.nl-strong { color: var(--nl-ink); font-weight: 600; }
+
+/* Pills and chips. */
+.nl-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 9px 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+.nl-pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.nl-pill.accent { background: var(--nl-accent-soft); color: var(--nl-accent-ink); }
+.nl-pill.green { background: var(--nl-green-soft); color: var(--nl-green); }
+.nl-pill.amber { background: var(--nl-amber-soft); color: var(--nl-amber); }
+.nl-pill.red { background: var(--nl-red-soft); color: var(--nl-red); }
+.nl-pill.violet { background: var(--nl-violet-soft); color: var(--nl-violet); }
+.nl-pill.neutral { background: var(--nl-hover); color: var(--text-muted); }
+
+.nl-chip {
+  display: inline-block;
+  padding: 1px 6px;
+  border: 1px solid var(--nl-rule);
+  border-radius: var(--radius-s);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+/* Progress. */
+.nl-cellrow { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+.nl-bar { position: relative; display: inline-block; width: 90px; height: 6px; overflow: hidden; border-radius: 3px; background: var(--nl-hair); }
+.nl-bar > i { position: absolute; inset: 0 auto 0 0; border-radius: 3px; background: var(--nl-accent-fill); }
+.nl-bar.is-done > i { background: var(--nl-green); }
+.nl-bar.is-amber > i { background: var(--nl-amber); }
+.nl-ticks { display: inline-flex; gap: 2px; width: 84px; }
+.nl-ticks > i { flex: 1; height: 5px; border-radius: 1.5px; background: var(--nl-hair); }
+.nl-ticks > i.on { background: var(--nl-accent-fill); }
+.nl-ticks.is-done > i.on { background: var(--nl-green); }
+.nl-dots { display: inline-flex; gap: 4px; align-items: center; }
+.nl-dots > i { width: 8px; height: 8px; border-radius: 50%; background: var(--nl-hair); }
+.nl-dots > i.on { background: var(--nl-accent-fill); }
+.nl-dots > i.off { background: transparent; box-shadow: inset 0 0 0 1.5px var(--nl-rule); }
+.nl-heat {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 44px;
+  height: 28px;
+  border-radius: 5px;
+  background: var(--nl-hover);
+  color: var(--text-normal);
+  font-size: 13px;
+  font-weight: 600;
+}
+.nl-heat.l1 { background: var(--nl-heat-1); }
+.nl-heat.l2 { background: var(--nl-heat-2); }
+.nl-heat.l3 { background: var(--nl-heat-3); color: var(--nl-on-accent); }
+.nl-icon { display: inline-flex; color: var(--text-faint); }
+.nl-icon svg { width: 15px; height: 15px; }
+.nl-icon.yes { color: var(--nl-green); }
+.nl-icon.no { color: var(--nl-amber); }
+.nl-thumb {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: var(--nl-band);
+  object-fit: contain;
+}
+img.nl-thumb { background: transparent; }
+
+/* Dashboard tables (nl-table). */
+.nl-table { width: 100%; }
+.nl-table td.wrap .nl-trunc { display: -webkit-box; white-space: normal; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.nl-table td.al-r, .nl-table th.al-r { text-align: end; }
+.nl-table td.al-c, .nl-table th.al-c { text-align: center; }
+.nl-table td.wrap { white-space: normal; }
+.nl-table td:not(.wrap) { white-space: nowrap; }
+.nl-table td .nl-trunc { display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; vertical-align: bottom; white-space: nowrap; }
+.nl-table tr.nl-group td {
+  height: 32px;
+  padding-inline: 12px;
+  background: var(--nl-band);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.nl-table tr.nl-group td .nl-count { margin-inline-start: 8px; color: var(--text-faint); }
+.nl-table tr.nl-group td .nl-right { float: right; color: var(--text-muted); font-size: 12.5px; font-weight: 400; letter-spacing: 0; text-transform: none; }
+.nl-table tr.nl-total td { height: 44px; border-top: 1.5px solid var(--nl-rule); border-bottom: 0; color: var(--nl-ink); font-weight: 600; }
+.nl-tablewrap { width: 100%; }
+
+/* Activity row on the daily page: the heatmap keeps its width, the side column takes the rest. */
+.nl-act-row { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 24px 56px; }
+
+/* Two columns. */
+.nl-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px 56px; }
+
+/* Rows used by the daily page. */
+.nl-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 42px;
+  border-bottom: 1px solid var(--nl-hair);
+}
+.nl-row > .nl-grow { flex: 1; min-width: 0; }
+.nl-row svg { width: 15px; height: 15px; color: var(--text-muted); flex: none; }
+.nl-row.is-tappable { cursor: pointer; }
+.nl-kv { display: flex; align-items: center; justify-content: space-between; min-height: 38px; border-bottom: 1px solid var(--nl-hair); }
+.nl-kv > :first-child { color: var(--text-muted); }
+.nl-kv > :last-child { color: var(--nl-ink); font-weight: 600; }
+
+/* Week segments. */
+.nl-week { display: grid; grid-template-columns: 90px minmax(0, 1fr) 24px; align-items: center; gap: 14px; min-height: 42px; border-bottom: 1px solid var(--nl-hair); }
+.nl-week.is-head { min-height: 22px; border: 0; color: var(--text-faint); font-size: 11px; font-weight: 600; }
+.nl-segs { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; text-align: center; }
+.nl-segs > i { height: 10px; border-radius: 3px; background: var(--nl-hover); }
+.nl-segs > i.on { background: var(--nl-accent-fill); }
+.nl-segs > i.off { background: var(--nl-rule); }
+.nl-segs > i.future { background: transparent; box-shadow: inset 0 0 0 1px var(--nl-hair); }
+.nl-week > b { color: var(--nl-ink); text-align: end; }
+
+/* Tiles on the daily page: 6, 3, 2 across. */
+.nl-tiles {
+  display: grid;
+  grid-template-columns: repeat(var(--nl-tile-cols, 6), minmax(0, 1fr));
+  border-block: 1px solid var(--nl-hair);
+}
+.nl-tile { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 16px 20px 18px; border-inline-start: 1px solid var(--nl-hair); }
+.nl-tile:nth-child(6n + 1) { padding-inline-start: 0; border-inline-start: 0; }
+.nl-tile-h { display: flex; align-items: center; gap: 6px; color: var(--text-muted); font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; }
+.nl-tile-h svg { width: 13px; height: 13px; color: var(--text-faint); }
+.nl-val { display: flex; align-items: baseline; gap: 5px; }
+.nl-val b { color: var(--nl-ink); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
+.nl-val b.is-empty { color: var(--text-faint); }
+.nl-val span { color: var(--text-muted); font-size: 13px; }
+.nl-hint { color: var(--text-muted); font-size: 12px; }
+.nl-input-row { display: flex; align-items: center; gap: 8px; }
+.nl-input-row input {
+  flex: 1;
+  min-width: 0;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid var(--nl-rule);
+  border-radius: 7px;
+  background: var(--nl-bg);
+  color: var(--nl-ink);
+  font: 600 17px var(--font-interface);
+}
+.nl-input-row input::placeholder { color: var(--text-faint); }
+.nl-input-row span { color: var(--text-muted); font-size: 13px; font-weight: 600; }
+.nl-picker { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 5px; max-width: 220px; }
+.nl-picker button {
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--nl-rule);
+  border-radius: 7px;
+  background: var(--nl-bg);
+  box-shadow: none;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.nl-picker button.on { border-color: var(--nl-accent-fill); background: var(--nl-accent-fill); color: var(--nl-on-accent); }
+
+/* Bars chart. */
+.nl-bars { display: flex; align-items: flex-end; gap: 3px; height: 36px; }
+.nl-bars > i { flex: 1; min-height: 2px; border-radius: 2px; background: var(--nl-heat-1); }
+.nl-bars > i.hi { background: var(--nl-accent-fill); }
+.nl-bars > i.none { height: 2px !important; background: var(--nl-hair); }
+.nl-chart { position: relative; }
+.nl-chart .nl-bars { height: 96px; gap: 14px; }
+.nl-chart .nl-bars > i { background: var(--nl-heat-2); border-radius: 4px; }
+.nl-chart .nl-ref { position: absolute; inset-inline: 0; height: 0; border-top: 1px dashed var(--nl-rule); }
+.nl-chart-labels { display: grid; grid-template-columns: repeat(var(--n, 7), minmax(0, 1fr)); gap: 14px; margin-top: 6px; color: var(--text-faint); font-size: 11px; text-align: center; }
+.nl-chart-labels.is-values { margin: 0 0 4px; color: var(--text-muted); font-weight: 600; }
+.nl-charts { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; }
+.nl-chart-empty { display: flex; align-items: center; height: 118px; border-bottom: 1px solid var(--nl-hair); color: var(--text-faint); font-size: 13px; }
+.nl-chart-t { margin-bottom: 8px; color: var(--text-normal); font-size: 13px; font-weight: 600; }
+
+.nl-ico { display: inline-flex; align-items: center; }
+.nl-ico svg { width: 15px; height: 15px; }
+
+/* Heatmap: month labels ride on their own column, so hiding a column hides its label. */
+.nl-hm-m { display: block; height: 14px; margin-bottom: 2px; overflow: visible; color: var(--text-faint); font-size: 11px; font-weight: 600; white-space: nowrap; }
+.nl-heatmap { display: flex; gap: 4px; }
+.nl-hm-col { display: flex; flex-direction: column; gap: 4px; }
+.nl-hm-col > i { width: 22px; height: 22px; border-radius: 4px; background: var(--nl-hair); }
+.nl-hm-col > i.l1 { background: var(--nl-heat-1); }
+.nl-hm-col > i.l2 { background: var(--nl-heat-2); }
+.nl-hm-col > i.l3 { background: var(--nl-heat-3); }
+.nl-hm-col > i.none { background: transparent; box-shadow: inset 0 0 0 1px var(--nl-hair); }
+.nl-hm-col > i.future { background: transparent; }
+.nl-hm-months { position: relative; height: 14px; margin-bottom: 6px; color: var(--text-faint); font-size: 11px; font-weight: 600; }
+.nl-hm-months > span { position: absolute; top: 0; }
+.nl-legend { display: flex; align-items: center; gap: 6px; margin-top: 8px; color: var(--text-faint); font-size: 11.5px; }
+.nl-legend i { width: 12px; height: 12px; border-radius: 3px; background: var(--nl-hair); }
+.nl-legend i.none { background: transparent; box-shadow: inset 0 0 0 1px var(--nl-hair); }
+.nl-legend i.l1 { background: var(--nl-heat-1); }
+.nl-legend i.l2 { background: var(--nl-heat-2); }
+.nl-legend i.l3 { background: var(--nl-heat-3); }
+
+/* Timeline: positions are percentages, so it reflows with the pane. */
+.nl-timeline { position: relative; height: 82px; }
+.nl-tl-axis { position: absolute; inset-inline: 0; top: 52px; height: 1px; background: var(--nl-rule); }
+.nl-tl-late { position: absolute; inset-inline-start: 0; top: 50px; height: 6px; border-radius: 3px; background: var(--nl-red-soft); }
+.nl-tl-tick { position: absolute; top: 64px; color: var(--text-faint); font-size: 11px; font-weight: 600; transform: translateX(-50%); white-space: nowrap; }
+.nl-tl-today { position: absolute; top: 38px; width: 2px; height: 28px; border-radius: 1px; background: var(--nl-accent-fill); transform: translateX(-1px); }
+.nl-tl-dot {
+  position: absolute;
+  top: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 13px;
+  height: 13px;
+  border: 2px solid var(--nl-bg);
+  border-radius: 999px;
+  background: var(--nl-accent-fill);
+  color: var(--nl-on-accent);
+  font-size: 9px;
+  font-weight: 700;
+  transform: translateX(-50%);
+}
+.nl-tl-dot.late { background: var(--nl-red); }
+.nl-tl-label { position: absolute; top: 0; max-width: 34%; overflow: hidden; color: var(--nl-accent-ink); font-size: 12px; font-weight: 500; text-overflow: ellipsis; white-space: nowrap; }
+.nl-tl-label.late { color: var(--nl-red); }
+.nl-tl-label.low { top: 18px; }
+.nl-timeline.has-blocks { height: 92px; }
+.nl-timeline.has-blocks .nl-tl-label { top: 70px; }
+.nl-tl-block {
+  position: absolute;
+  top: 8px;
+  height: 30px;
+  overflow: hidden;
+  padding: 0 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 30px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.nl-tl-block.done { background: var(--nl-green-soft); color: var(--nl-green); }
+.nl-tl-block.behind { background: var(--nl-amber-soft); color: var(--nl-amber); }
+.nl-tl-block.now { background: var(--nl-accent-soft); color: var(--nl-accent-ink); box-shadow: inset 0 0 0 1.5px var(--nl-accent-fill); }
+.nl-tl-block.next { box-shadow: inset 0 0 0 1px var(--nl-rule); color: var(--text-muted); }
+
+/* Stacked entries (narrow lists). */
+.nl-entry { display: flex; flex-direction: column; gap: 5px; padding: 12px 0; border-bottom: 1px solid var(--nl-hair); }
+.nl-entry-1 { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.nl-entry-1 a { overflow: hidden; font-size: 15px; font-weight: 500; text-overflow: ellipsis; white-space: nowrap; }
+.nl-entry-2 { display: flex; flex-wrap: wrap; gap: 4px 10px; color: var(--text-muted); font-size: 13px; }
+.nl-entry-3 { overflow: hidden; color: var(--text-muted); font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
+
+/* Goals (week) and journal. */
+.nl-goals { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-block: 1px solid var(--nl-hair); }
+.nl-goal { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 16px 22px; border-inline-start: 1px solid var(--nl-hair); }
+.nl-goal:first-child { padding-inline-start: 0; border-inline-start: 0; }
+.nl-goal-h { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.nl-goal-h b { overflow: hidden; color: var(--nl-ink); font-size: 16px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
+.nl-goal-h span { color: var(--text-normal); font-size: 13px; font-weight: 600; white-space: nowrap; }
+.nl-goal .nl-segs > span { color: var(--text-faint); font-size: 11px; }
+.nl-lines textarea {
+  display: block;
+  width: 100%;
+  min-height: 64px;
+  padding: 12px 16px;
+  resize: vertical;
+  line-height: 1.45;
+  border: 1px solid var(--nl-rule);
+  border-radius: var(--radius-m);
+  background: var(--nl-bg);
+  color: var(--text-normal);
+  font: 14px var(--font-interface);
+}
+.nl-journal { display: flex; flex-direction: column; }
+.nl-journal-item { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--nl-hair); }
+.nl-journal-item > b { color: var(--nl-ink); font-weight: 600; }
+.nl-journal-item ul { margin: 0; padding-inline-start: 1.1em; color: var(--text-normal); }
+/* ul > li matches the specificity of Obsidian's own list indent, which otherwise puts
+   top-level items further in than their children. */
+.nl-journal-item ul > li { margin: 0 0 2px; margin-inline-start: 0; }
+.nl-journal-item ul > li.d1 { margin-inline-start: 1.2em; list-style-type: circle; color: var(--text-muted); }
+.nl-journal-item ul > li.d2 { margin-inline-start: 2.4em; list-style-type: square; color: var(--text-muted); }
+.nl-journal-item li.nl-more { list-style: none; }
+.nl-clamp { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+
+/* Turned tables: shown only where the regular one does not fit. */
+.nl-turned { display: none; }
+
+/* ---------- 11. Cover cards: gc-* classes for collections (games, books) ---------- */
+
+.gc-filters { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; }
+.gc-filter {
+  height: 28px;
+  padding: 0 11px;
+  border: 1px solid var(--nl-rule);
+  border-radius: 999px;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text-normal);
+  font-size: 12.5px;
+  cursor: pointer;
+}
+.gc-filter.is-active { border-color: var(--nl-ink); background: var(--nl-ink); color: var(--nl-bg); font-weight: 600; }
+.gc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; margin: 0 0 1em; }
+.gc-grid[data-filter="BEG"] .gc-card:not([data-loc~="BEG"]),
+.gc-grid[data-filter="LED"] .gc-card:not([data-loc~="LED"]),
+.gc-grid[data-filter="sealed"] .gc-card:not([data-state="sealed"]),
+.gc-grid[data-filter="order"] .gc-card:not([data-state="order"]) { display: none; }
+.gc-card {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--nl-hair);
+  border-radius: 10px;
+  background: var(--nl-side, var(--nl-bg));
+}
+.theme-light .gc-card { background: var(--nl-bg); }
+.gc-card.is-order { border-color: var(--nl-accent-fill); border-style: dashed; }
+.gc-cover {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 6px;
+}
+/* The frame is transparent, so a box that isn't square sits on the card itself, and the
+   image rounds its own corners; only a missing image gets a filled frame. */
+.gc-cover img { max-width: 100%; max-height: 100%; border-radius: 6px; object-fit: contain; }
+.gc-cover:has(> .gc-noart) { background: var(--nl-band); }
+.gc-card.is-order .gc-cover img { opacity: 0.5; }
+.gc-noart { color: var(--text-faint); font-size: 11px; }
+.gc-badge {
+  position: absolute;
+  padding: 1px 5px;
+  border: 1px solid var(--nl-hair);
+  border-radius: 4px;
+  background: var(--nl-bg);
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1.3;
+}
+.gc-tl { top: 5px; left: 5px; }
+.gc-bl { bottom: 5px; left: 5px; }
+.gc-br { bottom: 5px; right: 5px; }
+.gc-lock { display: flex; align-items: center; color: var(--text-normal); }
+.gc-rating {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 2px 5px;
+  border-radius: 4px;
+  color: #2E3440;
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.gc-rating.r8 { background: #A3BE8C; }
+.gc-rating.r7 { background: #8FBCBB; }
+.gc-rating.r6 { background: #EBCB8B; }
+.gc-rating.r5 { background: #BF616A; color: #ECEFF4; }
+.gc-po {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: var(--nl-accent-fill);
+  color: var(--nl-on-accent);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+}
+.gc-title {
+  display: -webkit-box;
+  min-height: 2.5em;
+  overflow: hidden;
+  color: var(--nl-ink) !important;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-decoration: none;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.gc-sub { min-height: 1.3em; margin-top: -5px; overflow: hidden; color: var(--text-faint); font-size: 11.5px; text-overflow: ellipsis; white-space: nowrap; }
+.gc-meta { display: flex; align-items: center; justify-content: space-between; gap: 6px; color: var(--text-muted); font-size: 11.5px; white-space: nowrap; }
+.gc-stats { display: inline-flex; gap: 8px; }
+.gc-ticks { display: flex; gap: 2px; height: 6px; }
+.gc-ticks > i { flex: 1; border-radius: 1.5px; background: var(--nl-hair); }
+.gc-ticks > i.on { background: var(--nl-accent-fill); }
+.gc-ticks > i.done { background: var(--nl-green); }
+.gc-foot { display: flex; align-items: center; justify-content: space-between; gap: 6px; color: var(--text-muted); font-size: 11.5px; white-space: nowrap; }
+.gc-plays.is-strong { color: var(--text-normal); font-weight: 600; }
+.gc-plays.is-due { color: var(--nl-accent-ink); }
+.gc-cost.is-multi { text-decoration: underline dotted; text-underline-offset: 2px; }
+.gc-strip { display: flex; flex-wrap: wrap; gap: 4px; }
+.gc-strip > span { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; overflow: hidden; border: 1px solid var(--nl-hair); border-radius: 4px; background: var(--nl-band); color: var(--text-muted); font-size: 10px; }
+.gc-strip > span:has(> img) { border-color: transparent; background: transparent; }
+.gc-strip img { max-width: 100%; max-height: 100%; border-radius: 3px; object-fit: contain; }
+
+/* Books: the same card with a 2:3 cover that fills its frame, a
+   typeset stand-in until a cover file exists, year bands across the grid that match the
+   table's group rows, and a smaller minimum so a shelf of 80 stays compact. */
+.gc-grid.is-books { grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); }
+.gc-card.is-book .gc-cover { aspect-ratio: 2 / 3; }
+.gc-card.is-book .gc-cover img { width: 100%; height: 100%; max-width: none; max-height: none; object-fit: cover; }
+.gc-nocover { display: flex; flex-direction: column; justify-content: space-between; gap: 8px; width: 100%; height: 100%; padding: 28px 10px 26px; background: var(--nl-band); } /* clear of the corner badges */
+.gc-nocover-t { display: -webkit-box; overflow: hidden; color: var(--nl-ink); font-size: 12px; font-weight: 600; line-height: 1.3; overflow-wrap: normal; word-break: normal; hyphens: auto; -webkit-box-orient: vertical; -webkit-line-clamp: 7; }
+.gc-nocover-a { color: var(--text-muted); font-size: 11px; line-height: 1.3; }
+.gc-group {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: center;
+  height: 32px;
+  margin-top: 8px;
+  padding-inline: 12px;
+  border-radius: 6px;
+  background: var(--nl-band);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.gc-group:first-child { margin-top: 0; }
+.gc-group .nl-count { margin-inline-start: 8px; color: var(--text-faint); }
+.nl-chips + .gc-grid { margin-top: 14px; }
+.nl-chips + .nl-tablewrap { margin-top: 6px; }
+.gc-card.is-book .gc-meta > span:first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.nl-tablewrap.is-books .nl-thumb { width: 18px; height: 27px; border-radius: 3px; object-fit: cover; }
+
+/* ==========================================================================
+   12. Medium and narrow panes (container queries on the note pane)
+   ========================================================================== */
+
+@container note (max-width: 1100px) {
+  .nl-stats { --nl-stat-cols: 3; }
+  .nl-stat:nth-child(6n + 1) { padding-inline-start: 18px; border-inline-start: 1px solid var(--nl-hair); }
+  .nl-stat:nth-child(3n + 1) { padding-inline-start: 0; border-inline-start: 0; }
+  .nl-stat:nth-child(n + 4) { border-top: 1px solid var(--nl-hair); }
+  .nl-tiles { --nl-tile-cols: 3; }
+  .nl-tile:nth-child(6n + 1) { padding-inline-start: 20px; border-inline-start: 1px solid var(--nl-hair); }
+  .nl-tile:nth-child(3n + 1) { padding-inline-start: 0; border-inline-start: 0; }
+  .nl-tile:nth-child(n + 4) { border-top: 1px solid var(--nl-hair); }
+  .nl-charts { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .nl-hide-md { display: none !important; }
+}
+
+/* Twelve-column tables (weeks, months) need about 1,100 px; below that the turned
+   version, a row per week or month, takes over. */
+@container note (max-width: 1180px) {
+  .nl-regular { display: none; }
+  .nl-turned { display: block; }
+}
+
+@container note (max-width: 700px) {
+  /* Tables keep 14 px where width is scarce; 15 px elsewhere. Obsidian sizes cells from the
+     variable itself, so the variable is what changes. */
+  :is(.markdown-rendered, .cm-content, .nl-page) { --table-text-size: 14px; }
+  .nl-title { font-size: 26px; }
+  .nl-sec { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .nl-sec-m { text-align: start; }
+  .nl-head { align-items: stretch; flex-direction: column; }
+  .nl-controls { justify-content: space-between; }
+  .nl-controls .nl-nav { flex: 1 1 100%; justify-content: space-between; order: -1; height: 46px; }
+  .nl-controls .nl-nav button { width: 40px; height: 40px; }
+  .nl-stats { --nl-stat-cols: 2; }
+  .nl-stat:nth-child(3n + 1) { padding-inline-start: 14px; border-inline-start: 1px solid var(--nl-hair); }
+  .nl-stat:nth-child(2n + 1) { padding-inline-start: 0; border-inline-start: 0; }
+  .nl-stat:nth-child(n + 3) { border-top: 1px solid var(--nl-hair); }
+  .nl-stat-v { font-size: 22px; }
+  .nl-tiles { --nl-tile-cols: 2; }
+  .nl-tile { padding: 14px 12px 14px 14px; }
+  .nl-tile:nth-child(3n + 1) { padding-inline-start: 14px; border-inline-start: 1px solid var(--nl-hair); }
+  .nl-tile:nth-child(2n + 1) { padding-inline-start: 0; border-inline-start: 0; }
+  .nl-tile:nth-child(n + 3) { border-top: 1px solid var(--nl-hair); }
+  .nl-cols, .nl-act-row { grid-template-columns: minmax(0, 1fr); }
+  .nl-goals { grid-template-columns: minmax(0, 1fr); }
+  .nl-goal { padding-inline-start: 0; border-inline-start: 0; border-top: 1px solid var(--nl-hair); }
+  .nl-goal:first-child { border-top: 0; }
+  .nl-hide-sm { display: none !important; }
+  .nl-timeline.nl-hide-narrow { display: none; }
+  .nl-hm-col.is-old { display: none; }
+  .nl-heat { min-width: 34px; font-size: 12px; }
+  .nl-tl-label { max-width: 62%; }
+  .nl-chart-labels.is-values.is-dense { display: none; }
+  .nl-chart.is-dense .nl-bars, .nl-chart-labels.is-dense { gap: 5px; }
+  .nl-chart-labels.is-dense { font-size: 10px; }
+  .nl-hm-col > i { width: 20px; height: 20px; }
+  .nl-journal-item { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+
+  /* Column widths are desktop hints; on a phone the columns share what there is. */
+  .nl-table th { width: auto !important; }
+  .nl-table th:not(:first-child), .nl-table td:not(:first-child) { padding-inline-start: 8px; }
+  .nl-table th { font-size: 10px; letter-spacing: 0.04em; }
+  .nl-turned .nl-table :is(th, td):not(:first-child) { padding-inline-start: 4px; }
+
+  /* Dashboard tables marked .nl-stack become stacked entries. */
+  .nl-table.nl-stack thead { display: none; }
+  .nl-table.nl-stack, .nl-table.nl-stack tbody { display: block; }
+  .nl-table.nl-stack tr:not(.nl-group):not(.nl-total) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--nl-hair);
+  }
+  .nl-table.nl-stack tr:not(.nl-group) td { height: auto; padding: 0; border: 0; }
+  .nl-table.nl-stack tr:not(.nl-group) td:first-child { flex: 1 1 60%; min-width: 0; font-size: 15px; font-weight: 500; white-space: normal; overflow-wrap: anywhere; }
+  .nl-table.nl-stack tr:not(.nl-group) td.is-pill { flex: none; margin-inline-start: auto; }
+  .nl-table.nl-stack tr:not(.nl-group) td:not(:first-child):not(.is-pill) { flex: none; color: var(--text-muted); font-size: 13px; }
+  .nl-table.nl-stack tr:not(.nl-group) td.is-empty { display: none; }
+  .nl-table.nl-stack tr:not(.nl-group) td.wrap:not(:first-child) { flex: 1 1 100%; min-width: 0; white-space: normal; }
+  .nl-table.nl-stack tr:not(.nl-group) td.wrap.nl-hide-md:not(.is-empty) { display: block !important; }
+  .nl-table.nl-stack tr.nl-group { display: block; }
+  .nl-table.nl-stack tr.nl-group td { display: block; padding-inline: 10px; }
+  .nl-table.nl-stack tr.nl-total { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; padding: 12px 0; border-top: 1.5px solid var(--nl-rule); }
+  .nl-table.nl-stack tr.nl-total td:empty, .nl-table.nl-stack tr.nl-total td.is-empty { display: none; }
+  .nl-table.nl-stack tr.nl-total td { height: auto; padding: 0; border: 0; }
+
+  /* Markdown and Dataview tables scroll sideways instead of squeezing: four or more
+     columns keep a readable width, and cells sit closer. */
+  .markdown-rendered :is(.el-table table, table.table-view-table, table.table-editor):has(th:nth-child(4)) { min-width: 34em; }
+  .markdown-rendered :is(.el-table table, table.table-view-table, table.table-editor):has(th:nth-child(6)) { min-width: 44em; }
+  .markdown-rendered :is(.el-table, .block-language-dataview) :is(th, td):not(:first-child) { padding-inline-start: 8px; }
+  .markdown-rendered :is(.el-table, .block-language-dataview) :is(th, td):not(:last-child) { padding-inline-end: 8px; }
+  .markdown-preview-view .markdown-preview-sizer > div:is(.el-table, :has(> .block-language-dataview)) { overflow-x: auto; }
+  .gc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .gc-grid.is-books { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .gc-card.is-book .gc-meta > span:last-child { display: none; } /* the format; the start date matters more */
+}
+
+/* ---------- 13. Touch: 44 px targets, no hover-only detail ---------- */
+
+body.is-mobile .nl-btn,
+body.is-mobile .nl-chip-btn,
+body.is-mobile .gc-filter { min-height: 40px; }
+body.is-mobile .nl-row.is-tappable { min-height: 48px; }
+body.is-mobile .nl-picker button { height: 32px; }
+body.is-mobile .nl-input-row input { height: 42px; }

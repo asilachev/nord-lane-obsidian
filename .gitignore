@@ -1,0 +1,8 @@
+.DS_Store
+__pycache__/
+
+# The demo vault: the theme is built into it (python3 build.py demo), and Obsidian keeps
+# its own window and plugin state there.
+demo/.obsidian/themes/
+demo/.obsidian/workspace*.json
+demo/.obsidian/core-plugins.json
