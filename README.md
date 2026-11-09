@@ -45,6 +45,8 @@ Or clone the repo and run `python3 build.py /path/to/vault`.
   }
   ```
 
+**Size.** `theme.css` is about 225 KB, 163 KB of it the embedded fonts. Geist and Geist Mono each come in four subsets: Latin, Latin Extended (Central European accents such as č, ć, đ, š, ž), Cyrillic, and Cyrillic Extended (Ukrainian ґ, Kazakh letters). Obsidian loads it once. If you'd rather use fonts installed on your machine, `python3 build.py --no-fonts /path/to/vault` installs a 60 KB version.
+
 **Accessibility.** In both modes every text colour reaches WCAG AA contrast on the backgrounds it's used on: 4.5:1 for text, including callout titles on their own tint and day numbers on heat cells, and 3:1 for faint secondary labels. `python3 tools/contrast.py` checks this, and so does CI.
 
 Tested with Obsidian 1.15 on macOS, in Live Preview and reading view, light and dark, and in Obsidian's iPhone emulation.

@@ -5,6 +5,8 @@ arguments get the theme installed too.
 
     python3 build.py                     theme.css and manifest.json here
     python3 build.py ~/vault [~/other]   ...and into each vault's .obsidian/themes/Nord Lane/
+    python3 build.py --no-fonts ~/vault  a vault gets the theme without embedded fonts (about
+                                         60 KB instead of 225); the repo's theme.css stays full
 
 The fonts are Google Fonts subsets (latin, latin-ext, cyrillic, cyrillic-ext) of Geist and
 Geist Mono, variable weight 100-900, listed in src/fonts/manifest.txt and licensed under
@@ -43,19 +45,24 @@ for line in (SRC / "fonts" / "manifest.txt").read_text().splitlines():
         f"}}\n"
     )
 
-css = ((SRC / "theme.src.css").read_text()
-       + "\n/* ---------- Fonts: Geist and Geist Mono (SIL Open Font License, src/fonts/OFL.txt) ---------- */\n\n"
-       + "\n".join(faces))
+args = [a for a in sys.argv[1:] if not a.startswith("--")]
+no_fonts = "--no-fonts" in sys.argv[1:]
+if no_fonts and not args:
+    sys.exit("--no-fonts installs into vaults only (the repo's theme.css stays the full build): pass a vault path")
+
+base = (SRC / "theme.src.css").read_text()
+full = base + "\n/* ---------- Fonts: Geist and Geist Mono (SIL Open Font License, src/fonts/OFL.txt) ---------- */\n\n" + "\n".join(faces)
+lite = base + "\n/* Built with --no-fonts: Geist and Geist Mono are used when installed; otherwise the fallbacks. */\n"
 manifest = json.dumps(MANIFEST, indent=2) + "\n"
 
-targets = [ROOT]
-for arg in sys.argv[1:]:
+targets = [(ROOT, full)]
+for arg in args:
     vault = pathlib.Path(arg).expanduser().resolve()
     if not (vault / ".obsidian").is_dir():
         sys.exit(f"not an Obsidian vault (no .obsidian folder): {vault}")
-    targets.append(vault / ".obsidian" / "themes" / NAME)
+    targets.append((vault / ".obsidian" / "themes" / NAME, lite if no_fonts else full))
 
-for out in targets:
+for out, css in targets:
     out.mkdir(parents=True, exist_ok=True)
     (out / "theme.css").write_text(css)
     (out / "manifest.json").write_text(manifest)
