@@ -30,12 +30,15 @@ Or clone the repo and run `python3 build.py /path/to/vault`.
 ## Options
 
 - `cssclasses: [full]` uses the whole pane width; `cssclasses: [table-mono]` sets a note's tables in monospace.
+- `cssclasses: [prose]` keeps reading text to a comfortable measure: paragraphs, lists, headings and quotes stop at `--nl-prose-max` (46rem, about 95 characters), while tables, code, callouts, embeds and Dataview output keep the full column, all on the same left edge.
+- `cssclasses: [hide-properties]` keeps a note's properties out of reading view (dashboards with `cssclasses: [dashboard]` do this too).
 - Two variables, settable from a CSS snippet:
 
   ```css
   body {
     --nl-col-max: 60rem; /* the column, 75rem by default */
     --nl-bleed: 2rem;    /* how far tables and Dataview may hang past the text, 0 by default */
+    --nl-prose-max: 40rem; /* the prose measure, 46rem by default */
   }
   ```
 

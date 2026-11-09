@@ -9,6 +9,7 @@ All notable changes to Nord Lane. The format follows [Keep a Changelog](https://
 - CI checks that the committed `theme.css` and `manifest.json` match the source, and that the manifest and cover meet Obsidian's requirements.
 - `AGENTS.md`: the rules for agents working in this repo.
 - `tools/contrast.py`: a contrast audit of the theme's text and background pairs in both modes, run in CI.
+- `cssclasses: [prose]`: an opt-in reading measure (`--nl-prose-max`, 46rem) for paragraphs, lists, headings and quotes, while tables, code, callouts and embeds keep the full column.
 
 ### Changed
 

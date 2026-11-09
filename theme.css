@@ -81,6 +81,7 @@ body {
   --nl-gutter: 2.5rem;
   --nl-col-max: 75rem;
   --nl-bleed: 0px;
+  --nl-prose-max: 46rem;  /* cssclasses: [prose]: paragraphs, lists and headings, about 95 characters */
   /* Obsidian pads the reading view and the editor with --file-margins: the sides are the
      gutter, so a note's edge sits one gutter from the pane's edge, never two. */
   --file-margins: 32px var(--nl-gutter);
@@ -329,6 +330,16 @@ body.is-mobile {
 .markdown-preview-view.full,
 .markdown-source-view.mod-cm6.full {
   --file-line-width: var(--nl-avail);
+}
+
+/* cssclasses: [prose] keeps reading text to a comfortable measure: paragraphs, lists,
+   headings and quotes stop at --nl-prose-max, while tables, code, callouts, embeds and
+   Dataview output keep the full column. Everything shares the column's left edge. */
+.markdown-preview-view.prose .markdown-preview-sizer > :is(.el-p, .el-ul, .el-ol, .el-h1, .el-h2, .el-h3, .el-h4, .el-h5, .el-h6, .el-blockquote, .el-hr) {
+  max-width: var(--nl-prose-max);
+}
+.markdown-source-view.mod-cm6.prose .cm-content > .cm-line:not(.HyperMD-codeblock) {
+  max-width: var(--nl-prose-max);
 }
 
 /* ---------- 6. Reading surface ---------- */
