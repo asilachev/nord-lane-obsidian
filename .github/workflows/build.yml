@@ -1,0 +1,40 @@
+name: build
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build the theme
+        run: python3 build.py
+      - name: The committed build matches the source
+        run: |
+          if ! git diff --quiet -- theme.css manifest.json; then
+            echo "::error::theme.css or manifest.json is out of date: run python3 build.py and commit the result"
+            git diff --stat -- theme.css manifest.json
+            exit 1
+          fi
+      - name: Manifest and cover meet Obsidian's requirements
+        run: |
+          python3 - <<'PY'
+          import json, struct, sys
+          m = json.load(open("manifest.json"))
+          missing = [k for k in ("name", "version", "minAppVersion", "author") if not m.get(k)]
+          with open("cover.png", "rb") as f:
+              head = f.read(24)
+          w, h = struct.unpack(">II", head[16:24])
+          problems = [f"manifest.json lacks {', '.join(missing)}"] if missing else []
+          if (w, h) != (512, 288):
+              problems.append(f"cover.png is {w}x{h}, expected 512x288")
+          for p in problems:
+              print(f"::error::{p}")
+          sys.exit(1 if problems else 0)
+          PY
