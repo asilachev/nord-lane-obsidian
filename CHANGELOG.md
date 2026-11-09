@@ -19,6 +19,7 @@ All notable changes to Nord Lane. The format follows [Keep a Changelog](https://
 
 ### Fixed
 
+- The live harness keeps working when its window is behind others, because background throttling is off and every wait runs in Node. It handles several notes per phone run, opening notes with `openLinkText`, which works in mobile emulation. Phone screenshots are taken screen by screen, since full-height captures came out blank in mobile mode. `open.mjs`, which duplicated `view.mjs`, is gone.
 - Callout titles and icons take their type's Nord colour again (Obsidian 1.15 reads `--callout-color` as a whole colour), and the tint behind each callout is a little stronger, so a warning no longer looks like a note.
 
 ## [1.0.0] - 2026-11-09

@@ -15,7 +15,9 @@ mkdir -p "$DATA" "$HERE/shots"
 ASAR=$(ls -t "$HOME/Library/Application Support/obsidian/"obsidian-*.asar 2>/dev/null | head -1)
 [ -n "$ASAR" ] && cp -n "$ASAR" "$DATA/" 2>/dev/null
 [ -f "$DATA/obsidian.json" ] || printf '{"vaults":{"a1b2c3d4e5f60718":{"path":"%s","ts":%s000,"open":true}},"updateDisabled":true}\n' "$VAULT" "$(date +%s)" > "$DATA/obsidian.json"
-open -n -a Obsidian --args --user-data-dir="$DATA" --remote-debugging-port=9333 --remote-allow-origins='*'
+# Background throttling off: a test window sits behind others, and throttled timers stall it.
+open -n -a Obsidian --args --user-data-dir="$DATA" --remote-debugging-port=9333 --remote-allow-origins='*' \
+  --disable-background-timer-throttling --disable-renderer-backgrounding --disable-backgrounding-occluded-windows
 for i in $(seq 1 30); do curl -s http://127.0.0.1:9333/json/list >/dev/null 2>&1 && break; sleep 1; done
 sleep 4
 cd "$HERE" && node cdp.mjs eval '(() => { const b = [...document.querySelectorAll(".modal button")].find(b => /Trust author/.test(b.textContent)); if (b) { b.click(); return "plugins trusted"; } return "ready"; })()'
