@@ -19,3 +19,23 @@ With `cssclasses: [prose]`, paragraphs stop at a comfortable measure, about nine
 > A quote stays at the reading measure too, so the eye doesn't have to jump.
 
 Everything shares the column's left edge, so the page still reads as one column.
+
+## Headings
+
+Each level is a step down from the one above, and none is smaller than the text it heads until the fifth.
+
+### A third-level heading
+
+Body text under it, for scale: the heading should read as a heading, not as a bold line.
+
+#### A fourth-level heading
+
+The same size as this text, in semibold.
+
+##### A fifth-level heading
+
+A step smaller, for labels inside a section.
+
+###### A sixth-level heading
+
+The same size, in a muted colour.

@@ -26,6 +26,7 @@ All notable changes to Nord Lane. The format follows [Keep a Changelog](https://
 - The Properties view is set the same way in Live Preview, when properties are visible rather than shown as source: frontmatter-size text, monospace keys, muted, hairline dividers and a Nord hover.
 - The `## Meta` strip in reading view is opt-in: Style Settings, Nord Lane, Meta strip (it adds `nl-meta-strip` to the body). It was keyed on the heading's text and applied to every vault.
 - The added Snow Storm step `#F6F7FA` is called nord6a (it was nord6.5) in the README, the CSS comments and the demo vault, to match the other `nordX` names.
+- Headings step down from H2 to the text: H3 is 1.125em (18 px at the default 16), up from 1.03em, so it no longer reads as a bold line; H4 is the text's size (it was 0.95em, smaller than the text it heads); H5 and H6 are 0.875em.
 - Book covers in cards and in `.nl-tablewrap.is-books` tables have a hairline (`--nl-hair`), so a white cover doesn't melt into a light card.
 - The README leads with screenshots: the same note in light and dark, the palette, the one-column layout, the phone layout and the component classes. The demo's Cyrillic section shows Russian and Serbian.
 
