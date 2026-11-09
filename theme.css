@@ -1248,6 +1248,10 @@ img.nl-thumb { background: transparent; }
 .gc-grid.is-books { grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); }
 .gc-card.is-book .gc-cover { aspect-ratio: 2 / 3; }
 .gc-card.is-book .gc-cover img { width: 100%; height: 100%; max-width: none; max-height: none; object-fit: cover; }
+/* A hairline round a book cover, so a white one doesn't melt into a light card. Book covers
+   only: a board game's box art is often a cut-out on a transparent ground. */
+.gc-card.is-book .gc-cover img,
+.nl-tablewrap.is-books img.nl-thumb { outline: 1px solid var(--nl-hair); outline-offset: -1px; }
 .gc-nocover { display: flex; flex-direction: column; justify-content: space-between; gap: 8px; width: 100%; height: 100%; padding: 28px 10px 26px; background: var(--nl-band); } /* clear of the corner badges */
 .gc-nocover-t { display: -webkit-box; overflow: hidden; color: var(--nl-ink); font-size: 12px; font-weight: 600; line-height: 1.3; overflow-wrap: normal; word-break: normal; hyphens: auto; -webkit-box-orient: vertical; -webkit-line-clamp: 7; }
 .gc-nocover-a { color: var(--text-muted); font-size: 11px; line-height: 1.3; }
