@@ -126,7 +126,7 @@
     ],
     "alts": [
       "Телефон в светлой теме: таблица прокручивается вбок, ниже кириллица",
-      "Телефон в тёмной теме: карточки книг по две в ряд",
+      "Телефон в тёмной теме: обложки книг по три в ряд",
       "Телефон в светлой теме с дашбордом чтения"
     ]
   },
@@ -161,7 +161,7 @@
   },
   "footer": {
     "license": "Лицензия MIT. Автор: Alex Silachev.",
-    "credits": "Цвета: <a href=\"https://www.nordtheme.com\">Nord</a> от Arctic Ice Studio и Sven Greb (MIT). Шрифты: <a href=\"https://github.com/vercel/geist-font\">Geist и Geist Mono</a> от Geist Project Authors, по лицензии SIL Open Font License 1.1.",
+    "credits": "Цвета: <a href=\"https://www.nordtheme.com\">Nord</a> от Arctic Ice Studio и Sven Greb (MIT). Шрифты: <a href=\"https://github.com/vercel/geist-font\">Geist и Geist Mono</a> от Geist Project Authors, по лицензии SIL Open Font License 1.1. Обложки книг на скриншотах принадлежат их издательствам.",
     "github": "GitHub",
     "issues": "Задачи",
     "changelog": "Изменения",

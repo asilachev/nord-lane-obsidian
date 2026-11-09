@@ -26,7 +26,25 @@ export default async function (c, [lang, out, field, books, reading, heading, on
   }
   console.log(JSON.stringify(await c.evaluate(`({ language: localStorage.getItem("language"), moment: window.moment && moment.locale() })`)));
 
+  // The book covers sit in the vault's hidden .covers folder, out of the file tree. The notes
+  // name each one nl-cover:<name>; swap in the app's own URL for the file, as a Dataview view
+  // would get it, so the status bar counts the note's words and not an embedded image.
+  console.log("covers", await c.evaluate(`(async () => {
+    let n = 0;
+    for (const f of app.vault.getMarkdownFiles()) {
+      const text = await app.vault.read(f);
+      if (text.includes("nl-cover:")) await app.vault.modify(f, text.replace(/nl-cover:([a-z-]+)/g, (m, name) => (n++, app.vault.adapter.getResourcePath(".covers/" + name + ".jpg"))));
+    }
+    return n;
+  })()`));
+
   const theme = async (mode) => { await c.evaluate(`(app.changeTheme(${JSON.stringify(THEME[mode])}), 1)`); await c.sleep(700); };
+  // Every image in the open note has loaded: a missing cover fails the run instead of a shot.
+  const loaded = async (name) => {
+    const broken = await c.evaluate(`Promise.all([...document.querySelectorAll(".workspace-leaf.mod-active .markdown-preview-view img")].map(i => i.decode().then(() => "", () => i.getAttribute("src"))))
+      .then(r => r.filter(Boolean))`);
+    if (broken.length) throw new Error(`${name}: images that didn't load: ${broken.join(", ")}`);
+  };
   const scroller = `(() => { const v = window.__nlLeaf.view; return v.containerEl.querySelector(v.getMode() === "preview" ? ".markdown-preview-view" : ".cm-scroller"); })()`;
 
   // Scroll the open note until the anchor (an h2 with this text, or a CSS selector) sits `margin`
@@ -77,6 +95,7 @@ export default async function (c, [lang, out, field, books, reading, heading, on
     if (at) console.log(name, "scroll", await scrollTo(at, top + 28));
     await c.sleep(600);
     console.log(name, "trimmed", await trim(top + 2, h - 36));
+    await loaded(name);
     await c.sleep(400);
     console.log(await c.shot(`${out}/${name}.png`));
   };
@@ -85,7 +104,7 @@ export default async function (c, [lang, out, field, books, reading, heading, on
   await desk(field, 1600, 1000, "hero-light", { tree: true });
   await theme("dark");
   await desk(field, 1600, 1000, "hero-dark", { tree: true });
-  await desk(reading, 1440, 1060, "dashboard");
+  await desk(reading, 1440, 1110, "dashboard");
   await theme("light");
   await desk(field, 1100, 600, "tables", { at: heading });
   await desk(books, 900, 560, "cards");
@@ -109,13 +128,14 @@ export default async function (c, [lang, out, field, books, reading, heading, on
     if (at) console.log(name, "scroll", await scrollTo(at, 72));
     await c.sleep(800);
     console.log(name, "trimmed", await trim(58, 844 - 100));
+    await loaded(name);
     await c.sleep(400);
     console.log(await c.shot(`${out}/${name}.png`));
   };
   // The table that scrolls sideways, then the Russian and Serbian lines below it.
   await phone("light", field, "phone-field", { at: heading });
-  // Four cards three across fill the screen once the grid is at the top.
-  await phone("dark", books, "phone-books", { at: ".gc-grid" });
+  // The page's title and filters, then four covers three across.
+  await phone("dark", books, "phone-books", { at: ".nl-head" });
   // The stats two across and the heatmap's last weeks.
   await phone("light", reading, "phone-reading", { at: ".nl-stats" });
 

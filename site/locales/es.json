@@ -126,7 +126,7 @@
     ],
     "alts": [
       "Un móvil en modo claro con una tabla que se desplaza en horizontal y texto cirílico",
-      "Un móvil en modo oscuro con tarjetas de libros de dos en dos",
+      "Un móvil en modo oscuro con portadas de libros de tres en tres",
       "Un móvil en modo claro con un panel de lectura"
     ]
   },
@@ -161,7 +161,7 @@
   },
   "footer": {
     "license": "Licencia MIT. Hecho por Alex Silachev.",
-    "credits": "Colores: <a href=\"https://www.nordtheme.com\">Nord</a> de Arctic Ice Studio y Sven Greb (MIT). Fuentes: <a href=\"https://github.com/vercel/geist-font\">Geist y Geist Mono</a> de los Geist Project Authors, bajo la SIL Open Font License 1.1.",
+    "credits": "Colores: <a href=\"https://www.nordtheme.com\">Nord</a> de Arctic Ice Studio y Sven Greb (MIT). Fuentes: <a href=\"https://github.com/vercel/geist-font\">Geist y Geist Mono</a> de los Geist Project Authors, bajo la SIL Open Font License 1.1. Las portadas de los libros de las capturas pertenecen a sus editoriales.",
     "github": "GitHub",
     "issues": "Incidencias",
     "changelog": "Cambios",

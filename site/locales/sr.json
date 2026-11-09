@@ -126,7 +126,7 @@
     ],
     "alts": [
       "Телефон у светлом режиму: табела се помера у страну, испод ћирилица",
-      "Телефон у тамном режиму: картице књига по две у реду",
+      "Телефон у тамном режиму: корице књига по три у реду",
       "Телефон у светлом режиму са контролном таблом читања"
     ]
   },
@@ -161,7 +161,7 @@
   },
   "footer": {
     "license": "MIT лиценца. Аутор: Alex Silachev.",
-    "credits": "Боје: <a href=\"https://www.nordtheme.com\">Nord</a>, Arctic Ice Studio и Sven Greb (MIT). Фонтови: <a href=\"https://github.com/vercel/geist-font\">Geist и Geist Mono</a>, Geist Project Authors, под лиценцом SIL Open Font License 1.1.",
+    "credits": "Боје: <a href=\"https://www.nordtheme.com\">Nord</a>, Arctic Ice Studio и Sven Greb (MIT). Фонтови: <a href=\"https://github.com/vercel/geist-font\">Geist и Geist Mono</a>, Geist Project Authors, под лиценцом SIL Open Font License 1.1. Корице књига на снимцима екрана припадају њиховим издавачима.",
     "github": "GitHub",
     "issues": "Пријаве",
     "changelog": "Измене",

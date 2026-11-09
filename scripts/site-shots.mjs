@@ -8,9 +8,10 @@
 // plus notes written from site/locales/<lang>.json → demo), starts the test Obsidian on it
 // (tools/live/launch.sh), runs tools/live/site.mjs and saves site/screenshots/<lang>/*.png.
 // macOS only, like the rest of tools/live; needs Obsidian and Node 22. The sample content is
-// made up: four book titles and their authors, typeset covers, invented numbers.
+// made up apart from the books: four titles, their authors and covers (site/covers/, the
+// publishers' artwork from Apple Books, 450 px tall), with invented numbers.
 import { spawnSync } from 'node:child_process'
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
+import { copyFile, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { fileURLToPath } from 'node:url'
 
@@ -23,13 +24,17 @@ const onlyArg = process.argv.indexOf('--only')
 const only = onlyArg > 0 ? process.argv[onlyArg + 1] : ''
 for (const code of langs) if (!ALL.includes(code)) throw new Error(`Unknown language ${code}`)
 
-/** The shelf: titles and authors only; status and topic are sample data. */
+/** The shelf: titles, authors and covers; status and topic are sample data. */
 const BOOKS = [
-  { title: 'The Lean Startup', author: 'Eric Ries', year: 2011, status: 'done' },
-  { title: 'How to Win Friends and Influence People', author: 'Dale Carnegie', year: 1936, status: 'done' },
-  { title: 'Start with No', author: 'Jim Camp', year: 2002, status: 'reading' },
-  { title: 'Atlas Shrugged', author: 'Ayn Rand', year: 1957, status: 'next' },
+  { title: 'The Lean Startup', author: 'Eric Ries', year: 2011, status: 'done', cover: 'lean-startup' },
+  { title: 'How to Win Friends and Influence People', author: 'Dale Carnegie', year: 1936, status: 'done', cover: 'how-to-win-friends' },
+  { title: 'Start with No', author: 'Jim Camp', year: 2002, status: 'reading', cover: 'start-with-no' },
+  { title: 'Atlas Shrugged', author: 'Ayn Rand', year: 1957, status: 'next', cover: 'atlas-shrugged' },
 ]
+// The covers go into the vault's hidden .covers folder, so the file tree in the hero shots
+// stays as it is. The notes name each one nl-cover:<name>, and tools/live/site.mjs swaps in the
+// app's own URL for the file, the way a Dataview view gets one.
+for (const b of BOOKS) b.src = `nl-cover:${b.cover}`
 
 const fieldNote = (d) => {
   const f = d.field
@@ -67,7 +72,7 @@ const booksNote = (d) => {
   const corner = { reading: `<div class="gc-po">${b.reading}</div>`, done: `<div class="gc-badge gc-bl">${b.done}</div>`, next: `<div class="gc-badge gc-bl">${b.queued}</div>` }
   const cards = BOOKS.map(
     (x, i) =>
-      `<div class="gc-card is-book" data-status="${x.status}"><div class="gc-cover"><div class="gc-nocover"><div class="gc-nocover-t">${x.title}</div><div class="gc-nocover-a">${x.author}</div></div>${corner[x.status]}</div>` +
+      `<div class="gc-card is-book" data-status="${x.status}"><div class="gc-cover"><img src="${x.src}" alt="">${corner[x.status]}</div>` +
       `<a class="internal-link gc-title" data-href="${x.title}">${x.title}</a><div class="gc-sub">${x.author}</div><div class="gc-meta"><span>${x.year}</span><span>#${d.field.tags[i]}</span></div></div>`,
   )
   return `---
@@ -102,7 +107,9 @@ const readingNote = (d) => {
     return `<div class="nl-hm-col${w < 13 ? ' is-old' : ''}"><span class="nl-hm-m">${month}</span>${days}</div>`
   }).join('')
   const pill = { reading: `<span class="nl-pill accent">${r.reading}</span>`, done: `<span class="nl-pill green">${r.done}</span>`, next: `<span class="nl-pill neutral">${r.next}</span>` }
-  const rows = BOOKS.map((x) => `<tr><td>${x.title}</td><td>${x.author}</td><td>${pill[x.status]}</td><td class="al-r">${x.year}</td></tr>`).join('')
+  const rows = BOOKS.map(
+    (x) => `<tr><td><span class="nl-cellrow"><img class="nl-thumb" src="${x.src}" alt=""><span>${x.title}</span></span></td><td>${x.author}</td><td>${pill[x.status]}</td><td class="al-r">${x.year}</td></tr>`,
+  ).join('')
   const at = (year) => `${(((year - 1930) / 100) * 100).toFixed(1)}%`
   const ticks = [1930, 1950, 1970, 1990, 2010].map((y) => `<div class="nl-tl-tick" style="left: ${at(y)}">${y}</div>`).join('')
   const dots = [...BOOKS]
@@ -118,7 +125,7 @@ cssclasses:
 <div class="nl-head nl-block"><div><div class="nl-title">${d.files.reading}</div><div class="nl-sub">${r.sub}</div></div><div class="nl-controls"><div class="nl-nav"><button>‹</button><span>2026</span><button>›</button></div></div></div>
 <div class="nl-block"><div class="nl-stats">${stats}</div></div>
 <div class="nl-block"><div class="nl-sec"><div class="nl-sec-t">${r.days}</div><div class="nl-sec-m">${r.daysMeta}</div></div><div class="nl-hm"><div class="nl-heatmap">${cols}</div><div class="nl-legend"><span>${r.less}</span><i class="none"></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><span>${r.more}</span></div></div></div>
-<div class="nl-block"><div class="nl-sec"><div class="nl-sec-t">${r.shelf}</div><div class="nl-sec-m">${r.shelfMeta}</div></div><div class="nl-tablewrap"><table class="nl-table"><thead><tr><th>${r.book}</th><th>${r.author}</th><th>${r.status}</th><th class="al-r">${r.year}</th></tr></thead><tbody>${rows}</tbody></table></div></div>
+<div class="nl-block"><div class="nl-sec"><div class="nl-sec-t">${r.shelf}</div><div class="nl-sec-m">${r.shelfMeta}</div></div><div class="nl-tablewrap is-books"><table class="nl-table"><thead><tr><th>${r.book}</th><th>${r.author}</th><th>${r.status}</th><th class="al-r">${r.year}</th></tr></thead><tbody>${rows}</tbody></table></div></div>
 <div class="nl-block"><div class="nl-sec"><div class="nl-sec-t">${r.published}</div><div class="nl-sec-m">${r.publishedMeta}</div></div><div class="nl-timeline"><div class="nl-tl-axis"></div>${ticks}<div class="nl-tl-today" style="left: 96%"></div>${dots}</div></div>
 </div>
 `
@@ -160,6 +167,8 @@ for (const code of langs) {
   await writeFile(`${vault}/${d.files.books}.md`, booksNote(d))
   await writeFile(`${vault}/${d.files.reading}.md`, readingNote(d))
   for (const b of BOOKS) await writeFile(`${vault}/${d.files.library}/${b.title}.md`, `# ${b.title}\n\n${b.author}, ${b.year}.\n`)
+  await mkdir(`${vault}/.covers`)
+  for (const b of BOOKS) await copyFile(`${root}site/covers/${b.cover}.jpg`, `${vault}/.covers/${b.cover}.jpg`)
 
   const env = { ...process.env, NL_VAULT: vault, NL_DATA: `${tmp}/userdata` }
   // One test Obsidian at a time: a new one can't take the DevTools port while the last one holds it.

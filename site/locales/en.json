@@ -126,7 +126,7 @@
     ],
     "alts": [
       "A phone in light mode with a table that scrolls sideways and Cyrillic text",
-      "A phone in dark mode with book cards two across",
+      "A phone in dark mode with book covers three across",
       "A phone in light mode with a reading dashboard"
     ]
   },
@@ -161,7 +161,7 @@
   },
   "footer": {
     "license": "MIT license. Made by Alex Silachev.",
-    "credits": "Colours: <a href=\"https://www.nordtheme.com\">Nord</a> by Arctic Ice Studio and Sven Greb (MIT). Fonts: <a href=\"https://github.com/vercel/geist-font\">Geist and Geist Mono</a> by the Geist Project Authors, under the SIL Open Font License 1.1.",
+    "credits": "Colours: <a href=\"https://www.nordtheme.com\">Nord</a> by Arctic Ice Studio and Sven Greb (MIT). Fonts: <a href=\"https://github.com/vercel/geist-font\">Geist and Geist Mono</a> by the Geist Project Authors, under the SIL Open Font License 1.1. Book covers in the screenshots belong to their publishers.",
     "github": "GitHub",
     "issues": "Issues",
     "changelog": "Changelog",

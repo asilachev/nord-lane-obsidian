@@ -126,7 +126,7 @@
     ],
     "alts": [
       "Ein Smartphone im hellen Modus mit einer seitlich scrollenden Tabelle und kyrillischem Text",
-      "Ein Smartphone im dunklen Modus mit Buchkarten zu zweit",
+      "Ein Smartphone im dunklen Modus mit Buchcovern zu dritt",
       "Ein Smartphone im hellen Modus mit einem Lese-Dashboard"
     ]
   },
@@ -161,7 +161,7 @@
   },
   "footer": {
     "license": "MIT-Lizenz. Von Alex Silachev.",
-    "credits": "Farben: <a href=\"https://www.nordtheme.com\">Nord</a> von Arctic Ice Studio und Sven Greb (MIT). Schriften: <a href=\"https://github.com/vercel/geist-font\">Geist und Geist Mono</a> von den Geist Project Authors, unter der SIL Open Font License 1.1.",
+    "credits": "Farben: <a href=\"https://www.nordtheme.com\">Nord</a> von Arctic Ice Studio und Sven Greb (MIT). Schriften: <a href=\"https://github.com/vercel/geist-font\">Geist und Geist Mono</a> von den Geist Project Authors, unter der SIL Open Font License 1.1. Die Buchcover in den Screenshots gehören ihren Verlagen.",
     "github": "GitHub",
     "issues": "Issues",
     "changelog": "Änderungen",

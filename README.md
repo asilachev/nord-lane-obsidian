@@ -102,6 +102,7 @@ body {
 
 - Colours: [Nord](https://www.nordtheme.com) by Arctic Ice Studio and Sven Greb (MIT).
 - Fonts: [Geist and Geist Mono](https://github.com/vercel/geist-font) by the Geist Project Authors, under the SIL Open Font License 1.1 ([`src/fonts/OFL.txt`](src/fonts/OFL.txt)).
+- Book covers: the four in [`site/covers/`](site/covers), shown in the website's screenshots, belong to their publishers and aren't covered by this repo's license.
 
 ## License
 
