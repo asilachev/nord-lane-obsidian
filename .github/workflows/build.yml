@@ -22,6 +22,8 @@ jobs:
             git diff --stat -- theme.css manifest.json
             exit 1
           fi
+      - name: Text and backgrounds meet WCAG AA in both modes
+        run: python3 tools/contrast.py
       - name: Manifest and cover meet Obsidian's requirements
         run: |
           python3 - <<'PY'

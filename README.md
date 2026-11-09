@@ -39,6 +39,8 @@ Or clone the repo and run `python3 build.py /path/to/vault`.
   }
   ```
 
+**Accessibility.** In both modes every text colour reaches WCAG AA contrast on the backgrounds it's used on: 4.5:1 for text, including callout titles on their own tint and day numbers on heat cells, and 3:1 for faint secondary labels. `python3 tools/contrast.py` checks this, and so does CI.
+
 Tested with Obsidian 1.15 on macOS, in Live Preview and reading view, light and dark, and in Obsidian's iPhone emulation.
 
 ## Develop

@@ -104,15 +104,16 @@ body.is-mobile {
   --nl-muted: #4C566A;       /* nord3 */
   --nl-faint: #7B8496;
   --nl-accent: #4B6A92;      /* nord10, a step darker so links reach 4.8:1 */
-  --nl-accent-fill: #5E81AC; /* nord10 */
+  --nl-accent-fill: #4B6A92; /* nord10 a step darker, so white text on it reaches 5.6:1 */
   --nl-accent-ink: #3B5A84;
   --nl-accent-soft: #D6E2EE;
   --nl-on-accent: #FFFFFF;
-  --nl-green: #58744A;  --nl-green-soft: #E2EADA;
-  --nl-amber: #8C6418;  --nl-amber-soft: #F4EBD6;
+  --nl-green: #4D6840;  --nl-green-soft: #E2EADA;
+  --nl-amber: #7A5714;  --nl-amber-soft: #F4EBD6;
   --nl-red: #A5434D;    --nl-red-soft: #F3DEE0;
   --nl-violet: #86607F; --nl-violet-soft: #EDE4EC;
-  --nl-heat-1: #B7C9DD; --nl-heat-2: #81A1C1; --nl-heat-3: #5E81AC;
+  --nl-heat-1: #B7C9DD; --nl-heat-2: #81A1C1; --nl-heat-3: #4B6A92;
+  --nl-on-heat-1: var(--nl-ink); --nl-on-heat-2: var(--nl-ink); --nl-on-heat-3: #FFFFFF;
   --nl-shadow: 0 1px 2px rgba(46, 52, 64, 0.06);
 
   --color-base-00: #F6F7FA; --color-base-05: #F2F4F8; --color-base-10: #ECEFF4;
@@ -122,12 +123,13 @@ body.is-mobile {
 
   --accent-h: 214; --accent-s: 32%; --accent-l: 43%;
 
-  --callout-default: 75, 106, 146;   --callout-note: 75, 106, 146;
-  --callout-info: 75, 106, 146;      --callout-todo: 75, 106, 146;
-  --callout-summary: 75, 106, 146;   --callout-important: 75, 106, 146;
-  --callout-tip: 88, 116, 74;        --callout-success: 88, 116, 74;
-  --callout-question: 134, 96, 127;  --callout-example: 134, 96, 127;
-  --callout-warning: 140, 100, 24;
+  /* Callout colours: titles reach 4.5:1 on their own tint (contrast audit, #10). */
+  --callout-default: 62, 93, 134;    --callout-note: 62, 93, 134;
+  --callout-info: 62, 93, 134;       --callout-todo: 62, 93, 134;
+  --callout-summary: 62, 93, 134;    --callout-important: 62, 93, 134;
+  --callout-tip: 77, 104, 64;        --callout-success: 77, 104, 64;
+  --callout-question: 121, 83, 115;  --callout-example: 121, 83, 115;
+  --callout-warning: 122, 87, 20;
   --callout-fail: 165, 67, 77;       --callout-error: 165, 67, 77;    --callout-bug: 165, 67, 77;
   --callout-quote: 76, 86, 106;
 }
@@ -144,7 +146,7 @@ body.is-mobile {
   --nl-ink: #ECEFF4;         /* nord6 */
   --nl-ink-2: #D8DEE9;       /* nord4 */
   --nl-muted: #A7B0C0;
-  --nl-faint: #7F899C;
+  --nl-faint: #8C95A8;       /* 3.3:1 on bands, 4.2:1 on the page */
   --nl-accent: #88C0D0;      /* nord8 */
   --nl-accent-fill: #88C0D0;
   --nl-accent-ink: #9CCBD8;
@@ -154,7 +156,8 @@ body.is-mobile {
   --nl-amber: #EBCB8B;  --nl-amber-soft: #47422F;
   --nl-red: #D88F96;    --nl-red-soft: #4A3438;
   --nl-violet: #B48EAD; --nl-violet-soft: #413A48;
-  --nl-heat-1: #4A6380; --nl-heat-2: #5E81AC; --nl-heat-3: #88C0D0;
+  --nl-heat-1: #4A6380; --nl-heat-2: #81A1C1; --nl-heat-3: #88C0D0;
+  --nl-on-heat-1: var(--nl-ink); --nl-on-heat-2: #2E3440; --nl-on-heat-3: #2E3440;
   --nl-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 
   --color-base-00: #2E3440; --color-base-05: #2B303B; --color-base-10: #313744;
@@ -168,9 +171,9 @@ body.is-mobile {
   --callout-info: 129, 161, 193;     --callout-todo: 136, 192, 208;
   --callout-summary: 143, 188, 187;  --callout-important: 143, 188, 187;
   --callout-tip: 163, 190, 140;      --callout-success: 163, 190, 140;
-  --callout-question: 180, 142, 173; --callout-example: 180, 142, 173;
+  --callout-question: 201, 169, 195; --callout-example: 201, 169, 195;
   --callout-warning: 235, 203, 139;
-  --callout-fail: 191, 97, 106;      --callout-error: 191, 97, 106;   --callout-bug: 191, 97, 106;
+  --callout-fail: 224, 155, 161;     --callout-error: 224, 155, 161;  --callout-bug: 224, 155, 161;
   --callout-quote: 167, 176, 192;
 }
 
@@ -592,9 +595,9 @@ a.tag { font-weight: var(--tag-weight); }
   font-variant-numeric: tabular-nums;
   line-height: 1;
 }
-#calendar-container .day.has-note { background: var(--nl-heat-1); box-shadow: none; color: var(--nl-ink); }
-#calendar-container .day:has(.dot.filled:nth-of-type(2)) { background: var(--nl-heat-2); }
-#calendar-container .day:has(.dot.filled:nth-of-type(4)) { background: var(--nl-heat-3); color: var(--nl-on-accent); }
+#calendar-container .day.has-note { background: var(--nl-heat-1); box-shadow: none; color: var(--nl-on-heat-1); }
+#calendar-container .day:has(.dot.filled:nth-of-type(2)) { background: var(--nl-heat-2); color: var(--nl-on-heat-2); }
+#calendar-container .day:has(.dot.filled:nth-of-type(4)) { background: var(--nl-heat-3); color: var(--nl-on-heat-3); }
 #calendar-container .day.adjacent-month { opacity: 0.4; }
 #calendar-container .day:hover { box-shadow: inset 0 0 0 1.5px var(--nl-rule); }
 #calendar-container .day.today { box-shadow: inset 0 0 0 2px var(--nl-accent); font-weight: 700; }
@@ -794,9 +797,9 @@ a.tag { font-weight: var(--tag-weight); }
   font-size: 13px;
   font-weight: 600;
 }
-.nl-heat.l1 { background: var(--nl-heat-1); }
-.nl-heat.l2 { background: var(--nl-heat-2); }
-.nl-heat.l3 { background: var(--nl-heat-3); color: var(--nl-on-accent); }
+.nl-heat.l1 { background: var(--nl-heat-1); color: var(--nl-on-heat-1); }
+.nl-heat.l2 { background: var(--nl-heat-2); color: var(--nl-on-heat-2); }
+.nl-heat.l3 { background: var(--nl-heat-3); color: var(--nl-on-heat-3); }
 .nl-icon { display: inline-flex; color: var(--text-faint); }
 .nl-icon svg { width: 15px; height: 15px; }
 .nl-icon.yes { color: var(--nl-green); }

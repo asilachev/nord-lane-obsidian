@@ -8,10 +8,13 @@ All notable changes to Nord Lane. The format follows [Keep a Changelog](https://
 
 - CI checks that the committed `theme.css` and `manifest.json` match the source, and that the manifest and cover meet Obsidian's requirements.
 - `AGENTS.md`: the rules for agents working in this repo.
+- `tools/contrast.py`: a contrast audit of the theme's text and background pairs in both modes, run in CI.
 
 ### Changed
 
 - Properties in reading view follow Obsidian's "Properties in document" setting instead of always being hidden. They're set quietly, 13 px with monospace keys. `cssclasses: [hide-properties]` hides them for one note, and notes with `cssclasses: [dashboard]` hide them too. The Add property button stays out of reading view.
+
+- Colours meet WCAG AA everywhere text sits on them. Light mode: callout titles, the green and amber tones, the accent fill behind badges, and the darkest heat shade are a step darker. Dark mode: the error and question callouts and faint text are a step lighter, and the middle heat shade is lighter, with dark text. New `--nl-on-heat-1/2/3` tokens set the text colour on each heat shade.
 
 ### Removed
 
