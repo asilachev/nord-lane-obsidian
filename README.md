@@ -15,7 +15,7 @@ A calm, wide Obsidian theme on the [Nord](https://www.nordtheme.com) palette, wi
 - **Quiet frontmatter.** If you show properties as YAML source, the frontmatter is 13 px monospace in muted ink.
 - **A heat calendar.** With the [Calendar](https://github.com/liamcain/obsidian-calendar-plugin) plugin, each day is a square shaded by how much its note holds, and the month fits any sidebar width.
 - **Phones and narrow panes.** Layouts respond to the width of the note pane (container queries), so a narrow split on the Mac behaves like a phone.
-- **Extras for dataviewjs dashboards.** `nl-*` classes (stats, tables, heatmaps, timelines) and `gc-*` cover cards for collections. They do nothing unless your own views use them.
+- **Extras for dataviewjs dashboards.** `nl-*` classes (stats, tables, heatmaps, timelines) and `gc-*` cover cards for collections. They do nothing unless your own views use them; [docs/components.md](docs/components.md) shows the markup each one expects.
 
 ## Install
 
