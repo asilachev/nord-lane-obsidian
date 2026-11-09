@@ -89,23 +89,43 @@ cssclasses:
 
 const readingNote = (d) => {
   const r = d.reading
-  const stats = r.stats
-    .map((s) => `<div class="nl-stat"><div class="nl-stat-v">${s.v}</div><div class="nl-stat-l">${s.l}</div><div class="nl-stat-s">${s.s}</div></div>`)
-    .join('')
-  // 24 weeks of made-up reading days, the same in every language; the last week is still to come.
+  // 32 weeks of made-up reading days up to Monday 9 November 2026, the same in every language;
+  // the rest of that week is still to come. 32 weeks fill two thirds of the row, as in the
+  // design, and the book being read takes the rest.
+  const WEEKS = 32
+  const DAY = 864e5
+  const monday = Date.UTC(2026, 10, 9)
   let seed = 7
   const rnd = () => ((seed = (seed * 9301 + 49297) % 233280), seed / 233280)
-  const monthAt = { 0: 0, 4: 1, 8: 2, 13: 3, 17: 4, 21: 5 }
-  const cols = Array.from({ length: 24 }, (_, w) => {
+  let elapsed = 0
+  let noted = 0
+  let shown = -1
+  const cols = Array.from({ length: WEEKS }, (_, w) => {
+    const start = monday - (WEEKS - 1 - w) * 7 * DAY
+    let month = ''
     const days = Array.from({ length: 7 }, (_, day) => {
-      if (w === 23 && day > 0) return '<i class="future"></i>'
-      const v = rnd() + (w / 24) * 0.35 + (day > 4 ? 0.15 : 0)
-      return v < 0.45 ? '<i class="none"></i>' : `<i class="l${v < 0.75 ? 1 : v < 1 ? 2 : 3}"></i>`
+      // A month's name sits over the week its first day falls in, and over the first week.
+      const m = new Date(start + day * DAY).getUTCMonth()
+      if ((new Date(start + day * DAY).getUTCDate() === 1 || (w === 0 && day === 0)) && m !== shown) [month, shown] = [r.months[m], m]
+      if (w === WEEKS - 1 && day > 0) return '<i class="future"></i>'
+      elapsed++
+      const v = rnd() + (w / WEEKS) * 0.35 + (day > 4 ? 0.15 : 0)
+      if (v < 0.45) return '<i class="none"></i>'
+      noted++
+      return `<i class="l${v < 0.75 ? 1 : v < 1 ? 2 : 3}"></i>`
     }).join('')
-    const month = w in monthAt ? r.months[monthAt[w]] : ''
-    // On a phone the theme drops columns marked is-old; the last 11 weeks fit.
-    return `<div class="nl-hm-col${w < 13 ? ' is-old' : ''}"><span class="nl-hm-m">${month}</span>${days}</div>`
+    // On a phone the theme drops columns marked is-old; the last 14 weeks fill its width.
+    return `<div class="nl-hm-col${w < WEEKS - 14 ? ' is-old' : ''}"><span class="nl-hm-m">${month}</span>${days}</div>`
   }).join('')
+  // The days-with-notes stat counts what the heatmap shows.
+  const stats = r.stats
+    .map((s, i) => (i === 3 ? { ...s, v: String(noted), s: s.s.replace(/\d+/, elapsed) } : s))
+    .map((s) => `<div class="nl-stat"><div class="nl-stat-v">${s.v}</div><div class="nl-stat-l">${s.l}</div><div class="nl-stat-s">${s.s}</div></div>`)
+    .join('')
+  const now = BOOKS.find((x) => x.status === 'reading')
+  const nowCard =
+    `<div class="gc-card is-book is-row"><div class="gc-cover"><img src="${now.src}" alt=""></div><div class="gc-body"><span class="nl-pill accent">${r.reading}</span>` +
+    `<a class="internal-link gc-title" data-href="${now.title}">${now.title}</a><div class="gc-sub">${now.author}</div><div class="gc-meta"><span>${r.nowMeta.replace('{date}', '2026-10-19')}</span></div></div></div>`
   const pill = { reading: `<span class="nl-pill accent">${r.reading}</span>`, done: `<span class="nl-pill green">${r.done}</span>`, next: `<span class="nl-pill neutral">${r.next}</span>` }
   const rows = BOOKS.map(
     (x) => `<tr><td><span class="nl-cellrow"><img class="nl-thumb" src="${x.src}" alt=""><span>${x.title}</span></span></td><td>${x.author}</td><td>${pill[x.status]}</td><td class="al-r">${x.year}</td></tr>`,
@@ -124,7 +144,7 @@ cssclasses:
 <div class="nl-page">
 <div class="nl-head nl-block"><div><div class="nl-title">${d.files.reading}</div><div class="nl-sub">${r.sub}</div></div><div class="nl-controls"><div class="nl-nav"><button>‹</button><span>2026</span><button>›</button></div></div></div>
 <div class="nl-block"><div class="nl-stats">${stats}</div></div>
-<div class="nl-block"><div class="nl-sec"><div class="nl-sec-t">${r.days}</div><div class="nl-sec-m">${r.daysMeta}</div></div><div class="nl-hm"><div class="nl-heatmap">${cols}</div><div class="nl-legend"><span>${r.less}</span><i class="none"></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><span>${r.more}</span></div></div></div>
+<div class="nl-block"><div class="nl-act-row"><div><div class="nl-sec"><div class="nl-sec-t">${r.days}</div><div class="nl-sec-m">${r.daysMeta.replace(/\d+/, WEEKS)}</div></div><div class="nl-hm"><div class="nl-heatmap">${cols}</div><div class="nl-legend"><span>${r.less}</span><i class="none"></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><span>${r.more}</span></div></div></div><div><div class="nl-sec"><div class="nl-sec-t">${r.nowTitle}</div></div>${nowCard}</div></div></div>
 <div class="nl-block"><div class="nl-sec"><div class="nl-sec-t">${r.shelf}</div><div class="nl-sec-m">${r.shelfMeta}</div></div><div class="nl-tablewrap is-books"><table class="nl-table"><thead><tr><th>${r.book}</th><th>${r.author}</th><th>${r.status}</th><th class="al-r">${r.year}</th></tr></thead><tbody>${rows}</tbody></table></div></div>
 <div class="nl-block"><div class="nl-sec"><div class="nl-sec-t">${r.published}</div><div class="nl-sec-m">${r.publishedMeta}</div></div><div class="nl-timeline"><div class="nl-tl-axis"></div>${ticks}<div class="nl-tl-today" style="left: 96%"></div>${dots}</div></div>
 </div>

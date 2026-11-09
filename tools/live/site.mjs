@@ -63,11 +63,13 @@ export default async function (c, [lang, out, field, books, reading, heading, on
   })()`);
 
   // Hide every block that crosses the visible area [top, bottom] (window coordinates). Blocks are
-  // the note's sections and the nl-block parts of a dashboard.
+  // the note's sections and the nl-block parts of a dashboard; a row of columns (nl-act-row,
+  // nl-cols) counts column by column, since a narrow pane stacks them.
   const trim = (top, bottom) => c.evaluate(`(() => {
     const el = ${scroller};
     const blocks = [...el.querySelectorAll(".markdown-preview-section > div")]
-      .flatMap(d => d.querySelector(".nl-block") ? [...d.querySelectorAll(".nl-block")] : [d]);
+      .flatMap(d => d.querySelector(".nl-block") ? [...d.querySelectorAll(".nl-block")] : [d])
+      .flatMap(b => { const row = b.querySelector(":scope > .nl-act-row, :scope > .nl-cols"); return row ? [...row.children] : [b]; });
     let hidden = 0;
     for (const b of blocks) {
       const r = b.getBoundingClientRect();
