@@ -128,6 +128,6 @@ There are also bar charts (`.nl-bars`, `.nl-chart`) and a timeline (`.nl-timelin
   - `.gc-ticks > i.on` (or `i.done`): progress ticks
   - `.gc-foot` with `.gc-plays` and `.gc-cost`
   - `.gc-strip`: small thumbnails
-- **Variants:** `.gc-card.is-order` draws a dashed border.
+- **Variants:** `.gc-card.is-order` draws a dashed border. `.gc-card.is-row` lays a card on its side: the cover in a 72 px column and `.gc-body` beside it, holding the title, subtitle, meta and anything else, such as an `.nl-pill`. It suits one book next to a heatmap in `.nl-act-row`.
 - **Books:** `.gc-grid.is-books` and `.gc-card.is-book` use 2:3 covers. `.gc-nocover > .gc-nocover-t + .gc-nocover-a` is a typeset stand-in, and `.gc-group` is a band across the grid.
 - **Filtering:** set the `hidden` attribute on the cards that don't match.
