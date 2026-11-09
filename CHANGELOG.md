@@ -6,6 +6,7 @@ All notable changes to Nord Lane. The format follows [Keep a Changelog](https://
 
 ### Added
 
+- A website at nordlane.silachev.com in English, Spanish, German, Russian and Serbian (`site/`), built by `scripts/build-site.mjs` and deployed to GitHub Pages. Its screenshots are the real app in each language, taken by `scripts/site-shots.mjs`.
 - CI checks that the committed `theme.css` and `manifest.json` match the source, and that the manifest and cover meet Obsidian's requirements.
 - `AGENTS.md`: the rules for agents working in this repo.
 - `docs/components.md` and `demo/Components.md`: the markup for the `nl-*` and `gc-*` classes, with a screenshot.

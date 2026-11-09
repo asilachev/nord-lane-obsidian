@@ -2,7 +2,7 @@
 
 A calm, wide Obsidian theme on the [Nord](https://www.nordtheme.com) palette. Text, tables, Dataview output and embeds line up in one column, in light and dark, and your phone shows exactly what your desktop does.
 
-**[Install](#install)** · [Options](#options) · [Components](docs/components.md) · [Changelog](CHANGELOG.md)
+**[Install](#install)** · [Website](https://nordlane.silachev.com) · [Options](#options) · [Components](docs/components.md) · [Changelog](CHANGELOG.md)
 
 ![The same note in Nord Lane, light on the left and dark on the right](screenshots/hero.png)
 
@@ -96,6 +96,7 @@ body {
 - Edit `src/theme.src.css`, then run `python3 build.py`. It embeds the fonts and writes `theme.css` and `manifest.json` here. Pass vault paths to install the theme into those vaults too.
 - `demo/` is a small vault with sample notes for checking changes and taking screenshots: `python3 build.py demo`, then open the `demo` folder as a vault.
 - `tools/live/` checks the theme in the real app (Node 22 or later). `./launch.sh` starts a separate Obsidian on the demo vault, with its own settings folder and a DevTools port. Then `node cdp.mjs run view.mjs "Field notes.md" source 1600 1000 light` saves one screen to `tools/live/shots/light.png`; `preview` gives reading view. `node cdp.mjs run phone.mjs 390 844 phone "Field notes.md=field"` does the phone layout, and `node cdp.mjs eval 'app.emulateMobile(false)'` goes back. `./reload-theme.sh` picks up a new build, and `./launch.sh stop` quits it. For your own vault, point `NL_VAULT` at a copy, never at a vault you have open.
+- `site/` is the website, in English, Spanish, German, Russian and Serbian. `node scripts/build-site.mjs` renders it into `_site/` (preview with `python3 -m http.server -d _site`), and `node scripts/site-shots.mjs` retakes its screenshots from the real app in every language. GitHub Pages deploys it from `master`.
 
 ## Credits
 

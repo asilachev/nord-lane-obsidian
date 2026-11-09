@@ -1,0 +1,410 @@
+<!doctype html>
+<!--
+  The landing page template (#17). scripts/build-site.mjs renders it once per language:
+  {{key}} is a text from site/locales/<lang>.json (hero.titleEm is the headline's longest line in em,
+  measured in the browser, so it can be sized to fit its column); {{base}}, {{shots}}, {{links.*}} and the rest
+  come from the build. Texts may hold inline HTML such as <code>. Every screenshot is the real
+  app in that language, taken by scripts/site-shots.mjs into site/screenshots/<lang>/.
+-->
+<html lang="{{lang}}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{meta.title}}</title>
+    <meta name="description" content="{{meta.description}}" />
+    <meta name="theme-color" content="#F6F7FA" />
+    <meta name="color-scheme" content="light" />
+    <link rel="canonical" href="{{pageUrl}}" />
+    {{alternates}}
+    <link rel="icon" type="image/svg+xml" href="{{base}}favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="{{ogLocale}}" />
+    <meta property="og:url" content="{{pageUrl}}" />
+    <meta property="og:title" content="{{meta.title}}" />
+    <meta property="og:description" content="{{meta.ogDescription}}" />
+    <meta property="og:image" content="{{siteUrl}}screenshots/{{code}}/hero-light.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="{{base}}fonts.css?v={{cssVersion}}" />
+    <link rel="stylesheet" href="{{base}}styles.css?v={{cssVersion}}" />
+    {{redirect}}
+  </head>
+  <body>
+    <header class="nav">
+      <div class="wrap nav-row">
+        <a class="brand" href="#top">
+          <span class="chip" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span class="wordmark">Nord Lane</span>
+          <span class="version">{{version}}</span>
+        </a>
+        <nav class="links" aria-label="{{nav.sections}}">
+          <a href="#tables">{{nav.tables}}</a>
+          <a href="#cards">{{nav.cards}}</a>
+          <a href="#dashboards">{{nav.dashboards}}</a>
+          <a href="#mobile">{{nav.mobile}}</a>
+          <a href="#install">{{nav.install}}</a>
+        </nav>
+        <div class="nav-end">
+          <ul class="langs" aria-label="{{nav.language}}">
+            {{langChips}}
+          </ul>
+          <details class="lang-menu">
+            <summary aria-label="{{nav.language}}: {{langName}}">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M3 12h18M12 3c3 2.7 3 15.3 0 18M12 3c-3 2.7-3 15.3 0 18" />
+              </svg>
+              <span>{{langCode}}</span>
+            </summary>
+            <ul aria-label="{{nav.language}}">
+              {{langMenu}}
+            </ul>
+          </details>
+          <a class="button ghost small" href="{{links.github}}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.6.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z" /></svg>
+            <span class="label">{{nav.github}}</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero light">
+        <div class="wrap">
+          <div class="hero-copy">
+            <div class="hero-title">
+              <p class="kicker-row"><span class="pill-chip">{{hero.caption}}</span><span>{{hero.kicker}}</span></p>
+              <h1 style="--h1-em: {{hero.titleEm}}">{{hero.title}}</h1>
+            </div>
+            <div class="hero-pitch">
+              <p class="lead">{{hero.lead}}</p>
+              <div class="actions">
+                <a class="button" href="#install">
+                  {{hero.install}}
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg>
+                </a>
+                <a class="button ghost" href="{{links.github}}">{{hero.github}}</a>
+              </div>
+              <p class="mono meta">{{hero.meta}}</p>
+            </div>
+          </div>
+
+          <div class="ruler" aria-hidden="true"><i></i><b></b><span>{{hero.ruler}}</span><b></b><i></i></div>
+          <div class="split" style="--split: 50%">
+            <img class="split-light" src="{{shots}}hero-light.png" width="1600" height="1000" alt="{{hero.alt}}" />
+            <img class="split-dark" src="{{shots}}hero-dark.png" width="1600" height="1000" alt="" />
+            <div class="split-seam" aria-hidden="true">
+              <span class="split-handle"><svg viewBox="0 0 24 24"><path d="m9 7-5 5 5 5M15 7l5 5-5 5" /></svg></span>
+            </div>
+            <input class="split-range" type="range" min="0" max="100" value="50" aria-label="{{hero.compare}}" />
+          </div>
+          <div class="captions mono"><span>{{hero.light}}</span><span>{{hero.dark}}</span></div>
+        </div>
+      </section>
+
+      <section class="facts light" aria-label="{{hero.caption}}">
+        <div class="wrap">
+          <dl class="stats">
+            <div><dt>{{facts.0.label}}</dt><dd class="v">{{facts.0.value}}</dd><dd class="s">{{facts.0.sub}}</dd></div>
+            <div><dt>{{facts.1.label}}</dt><dd class="v">{{facts.1.value}}</dd><dd class="s">{{facts.1.sub}}</dd></div>
+            <div><dt>{{facts.2.label}}</dt><dd class="v">{{facts.2.value}}</dd><dd class="s">{{facts.2.sub}}</dd></div>
+            <div><dt>{{facts.3.label}}</dt><dd class="v">{{facts.3.value}}</dd><dd class="s">{{facts.3.sub}}</dd></div>
+            <div><dt>{{facts.4.label}}</dt><dd class="v">{{facts.4.value}}</dd><dd class="s">{{facts.4.sub}}</dd></div>
+            <div><dt>{{facts.5.label}}</dt><dd class="v">{{facts.5.value}}</dd><dd class="s">{{facts.5.sub}}</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="section light" id="column">
+        <div class="wrap split-2">
+          <div class="copy">
+            <p class="kicker"><span class="mono">01</span><b></b>{{column.kicker}}</p>
+            <h2>{{column.title}}</h2>
+            <p class="body">{{column.body}}</p>
+            <dl class="specs">
+              <div><dt>{{column.specs.0.key}}</dt><dd>{{column.specs.0.value}}</dd></div>
+              <div><dt>{{column.specs.1.key}}</dt><dd>{{column.specs.1.value}}</dd></div>
+              <div><dt>{{column.specs.2.key}}</dt><dd>{{column.specs.2.value}}</dd></div>
+            </dl>
+          </div>
+          <figure class="lane" aria-label="{{column.diagram.label}}">
+            <div class="lane-dim mono" aria-hidden="true"><i></i><b></b><span>75rem</span><b></b><i></i></div>
+            <div class="lane-block" data-tag="{{column.diagram.text}}">
+              <p class="lane-h">{{column.diagram.heading}}</p>
+              <span class="bar"></span><span class="bar"></span><span class="bar short"></span>
+            </div>
+            <div class="lane-block lane-table" data-tag="{{column.diagram.table}}">
+              <div class="lane-tr head"><span>{{column.diagram.book}}</span><span>{{column.diagram.author}}</span><span>{{column.diagram.year}}</span><span>{{column.diagram.pages}}</span></div>
+              <div class="lane-tr"><i class="link w60"></i><i class="w55"></i><i class="w30"></i><i class="w25 r"></i></div>
+              <div class="lane-tr"><i class="link w45"></i><i class="w70"></i><i class="w30"></i><i class="w20 r"></i></div>
+              <div class="lane-tr"><i class="link w70"></i><i class="w45"></i><i class="w30"></i><i class="w25 r"></i></div>
+            </div>
+            <div class="lane-block lane-callout" data-tag="{{column.diagram.callout_tag}}">
+              <p><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3.2.3 1.3 1.2 2.2 2.5 2.7z" /></svg>{{column.diagram.callout}}</p>
+              <span class="bar"></span><span class="bar short"></span>
+            </div>
+            <div class="lane-block lane-cards" data-tag="{{column.diagram.dataview}}">
+              <span><i></i><b></b><b class="short"></b></span><span><i></i><b></b><b class="short"></b></span><span><i></i><b></b><b class="short"></b></span><span><i></i><b></b><b class="short"></b></span>
+            </div>
+            <div class="lane-block lane-embed" data-tag="{{column.diagram.embed}}"></div>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section dark" id="palette">
+        <div class="wrap">
+          <div class="head-2">
+            <div>
+              <p class="kicker"><span class="mono">02</span><b></b>{{palette.kicker}}</p>
+              <h2>{{palette.title}}</h2>
+            </div>
+            <p class="body">{{palette.body}}</p>
+          </div>
+          <div class="bands">
+            <div class="group">
+              <p class="group-name">{{palette.groups.0.name}}</p>
+              <p class="group-desc">{{palette.groups.0.desc}}</p>
+              <div class="band edge">
+                <span style="--c: #2e3440"><b>nord0</b>2E3440</span><span style="--c: #3b4252"><b>nord1</b>3B4252</span><span style="--c: #434c5e"><b>nord2</b>434C5E</span><span style="--c: #4c566a"><b>nord3</b>4C566A</span>
+              </div>
+            </div>
+            <div class="group">
+              <p class="group-name">{{palette.groups.1.name}}</p>
+              <p class="group-desc">{{palette.groups.1.desc}}</p>
+              <div class="band ink">
+                <span style="--c: #d8dee9"><b>nord4</b>D8DEE9</span><span style="--c: #e5e9f0"><b>nord5</b>E5E9F0</span><span style="--c: #eceff4"><b>nord6</b>ECEFF4</span><span style="--c: #f6f7fa" class="added"><em>{{palette.added}}</em><b>nord6a</b>F6F7FA</span>
+              </div>
+            </div>
+            <div class="group">
+              <p class="group-name">{{palette.groups.2.name}}</p>
+              <p class="group-desc">{{palette.groups.2.desc}}</p>
+              <div class="band ink">
+                <span style="--c: #8fbcbb"><b>nord7</b>8FBCBB</span><span style="--c: #88c0d0"><b>nord8</b>88C0D0</span><span style="--c: #81a1c1"><b>nord9</b>81A1C1</span><span style="--c: #5e81ac" class="on-dark"><b>nord10</b>5E81AC</span>
+              </div>
+            </div>
+            <div class="group wide">
+              <p class="group-name">{{palette.groups.3.name}}</p>
+              <p class="group-desc">{{palette.groups.3.desc}}</p>
+              <div class="band ink">
+                <span style="--c: #bf616a" class="on-dark"><b>nord11</b>BF616A</span><span style="--c: #d08770"><b>nord12</b>D08770</span><span style="--c: #ebcb8b"><b>nord13</b>EBCB8B</span><span style="--c: #a3be8c"><b>nord14</b>A3BE8C</span><span style="--c: #b48ead"><b>nord15</b>B48EAD</span>
+              </div>
+            </div>
+          </div>
+          <div class="modes">
+            <div class="mode light">
+              <p class="mode-head"><b>{{palette.light.name}}</b><span class="mono">{{palette.light.sub}}</span></p>
+              <p class="pills"><span class="p green">{{palette.pills.0}}</span><span class="p accent">{{palette.pills.1}}</span><span class="p amber">{{palette.pills.2}}</span><span class="p red">{{palette.pills.3}}</span><span class="p violet">{{palette.pills.4}}</span></p>
+              <p class="roles"><b>{{palette.roles.heading}}</b><span>{{palette.roles.body}}</span><span class="muted">{{palette.roles.muted}}</span><span class="link">{{palette.roles.link}}</span><span class="tag">{{palette.roles.tag}}</span></p>
+              <p class="mono note">{{palette.light.note}}</p>
+            </div>
+            <div class="mode dark raised">
+              <p class="mode-head"><b>{{palette.dark.name}}</b><span class="mono">{{palette.dark.sub}}</span></p>
+              <p class="pills"><span class="p green">{{palette.pills.0}}</span><span class="p accent">{{palette.pills.1}}</span><span class="p amber">{{palette.pills.2}}</span><span class="p red">{{palette.pills.3}}</span><span class="p violet">{{palette.pills.4}}</span></p>
+              <p class="roles"><b>{{palette.roles.heading}}</b><span>{{palette.roles.body}}</span><span class="muted">{{palette.roles.muted}}</span><span class="link">{{palette.roles.link}}</span><span class="tag">{{palette.roles.tag}}</span></p>
+              <p class="mono note">{{palette.dark.note}}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section band-bg light" id="tables">
+        <div class="wrap">
+          <div class="head-1">
+            <p class="kicker"><span class="mono">03</span><b></b>{{tables.kicker}}</p>
+            <h2>{{tables.title}}</h2>
+            <p class="body">{{tables.body}}</p>
+          </div>
+          <div class="shot-notes">
+            <figure class="window">
+              <img src="{{shots}}tables.png" width="1100" height="600" alt="{{tables.alt}}" loading="lazy" />
+            </figure>
+            <ol class="notes">
+              <li>{{tables.points.0}}</li>
+              <li>{{tables.points.1}}</li>
+              <li>{{tables.points.2}}</li>
+              <li>{{tables.points.3}}</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="section light" id="cards">
+        <div class="wrap split-2 reverse">
+          <figure class="window">
+            <img src="{{shots}}cards.png" width="900" height="560" alt="{{cards.alt}}" loading="lazy" />
+          </figure>
+          <div class="copy">
+            <p class="kicker"><span class="mono">04</span><b></b>{{cards.kicker}}</p>
+            <h2>{{cards.title}}</h2>
+            <p class="body">{{cards.body}}</p>
+            <dl class="specs">
+              <div><dt>{{cards.specs.0.key}}</dt><dd class="mono">{{cards.specs.0.value}}</dd></div>
+              <div><dt>{{cards.specs.1.key}}</dt><dd class="mono">{{cards.specs.1.value}}</dd></div>
+              <div><dt>{{cards.specs.2.key}}</dt><dd class="mono">{{cards.specs.2.value}}</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="section dark" id="dashboards">
+        <div class="wrap">
+          <div class="head-2">
+            <div>
+              <p class="kicker"><span class="mono">05</span><b></b>{{dashboards.kicker}}</p>
+              <h2>{{dashboards.title}}</h2>
+            </div>
+            <div>
+              <p class="body">{{dashboards.body}}</p>
+              <p class="body small">{{dashboards.docs}}</p>
+            </div>
+          </div>
+          <figure class="window deep">
+            <img src="{{shots}}dashboard.png" width="1440" height="1060" alt="{{dashboards.alt}}" loading="lazy" />
+          </figure>
+        </div>
+      </section>
+
+      <section class="section band-bg light" id="mobile">
+        <div class="wrap">
+          <div class="head-2">
+            <div>
+              <p class="kicker"><span class="mono">06</span><b></b>{{mobile.kicker}}</p>
+              <h2>{{mobile.title}}</h2>
+            </div>
+            <p class="body">{{mobile.body}}</p>
+          </div>
+          <div class="phones">
+            <figure class="phone low">
+              <div class="device light">
+                <img src="{{shots}}phone-field.png" width="390" height="844" alt="{{mobile.alts.0}}" loading="lazy" />
+                <span class="status mono" aria-hidden="true">9:41<svg viewBox="0 0 62 14"><path d="M1 12h3V9H1zM7 12h3V7H7zM13 12h3V4h-3zM19 12h3V1h-3z" /><path d="M33 5.2a10 10 0 0 1 14 0l-1.6 1.6a7.7 7.7 0 0 0-10.8 0zM36.2 8.4a5.5 5.5 0 0 1 7.6 0L40 12.2z" /><rect x="50" y="2" width="10" height="10" rx="2.6" /></svg></span>
+                <i class="island"></i><i class="b b1"></i><i class="b b2"></i><i class="b b3"></i><i class="b b4"></i><i class="b b5"></i>
+              </div>
+              <figcaption class="mono">{{mobile.captions.0}}</figcaption>
+            </figure>
+            <figure class="phone">
+              <div class="device dark">
+                <img src="{{shots}}phone-books.png" width="390" height="844" alt="{{mobile.alts.1}}" loading="lazy" />
+                <span class="status mono" aria-hidden="true">9:41<svg viewBox="0 0 62 14"><path d="M1 12h3V9H1zM7 12h3V7H7zM13 12h3V4h-3zM19 12h3V1h-3z" /><path d="M33 5.2a10 10 0 0 1 14 0l-1.6 1.6a7.7 7.7 0 0 0-10.8 0zM36.2 8.4a5.5 5.5 0 0 1 7.6 0L40 12.2z" /><rect x="50" y="2" width="10" height="10" rx="2.6" /></svg></span>
+                <i class="island"></i><i class="b b1"></i><i class="b b2"></i><i class="b b3"></i><i class="b b4"></i><i class="b b5"></i>
+              </div>
+              <figcaption class="mono">{{mobile.captions.1}}</figcaption>
+            </figure>
+            <figure class="phone low">
+              <div class="device light">
+                <img src="{{shots}}phone-reading.png" width="390" height="844" alt="{{mobile.alts.2}}" loading="lazy" />
+                <span class="status mono" aria-hidden="true">9:41<svg viewBox="0 0 62 14"><path d="M1 12h3V9H1zM7 12h3V7H7zM13 12h3V4h-3zM19 12h3V1h-3z" /><path d="M33 5.2a10 10 0 0 1 14 0l-1.6 1.6a7.7 7.7 0 0 0-10.8 0zM36.2 8.4a5.5 5.5 0 0 1 7.6 0L40 12.2z" /><rect x="50" y="2" width="10" height="10" rx="2.6" /></svg></span>
+                <i class="island"></i><i class="b b1"></i><i class="b b2"></i><i class="b b3"></i><i class="b b4"></i><i class="b b5"></i>
+              </div>
+              <figcaption class="mono">{{mobile.captions.2}}</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section light" id="options">
+        <div class="wrap split-2">
+          <div class="copy">
+            <p class="kicker"><span class="mono">07</span><b></b>{{options.kicker}}</p>
+            <h2>{{options.title}}</h2>
+            <p class="body">{{options.body}}</p>
+            <p class="body small">{{options.more}}</p>
+          </div>
+          <div class="code-stack">
+            <p class="code-label">{{options.note}}</p>
+            <pre class="code"><span class="lang">yaml</span><code><span class="c">---</span>
+<span class="k">cssclasses:</span>
+  - full        <span class="c"># {{options.full}}</span>
+  - table-mono  <span class="c"># {{options.mono}}</span>
+  - prose       <span class="c"># {{options.prose}}</span>
+<span class="c">---</span></code></pre>
+            <p class="code-label">{{options.snippet}}</p>
+            <pre class="code"><span class="lang">css</span><code><span class="k">body</span> {
+  <span class="k">--nl-col-max</span>: 60rem;   <span class="c">/* {{options.col}} */</span>
+  <span class="k">--nl-bleed</span>: 2rem;      <span class="c">/* {{options.bleed}} */</span>
+  <span class="k">--nl-prose-max</span>: 40rem; <span class="c">/* {{options.proseMax}} */</span>
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="section dark install" id="install">
+        <div class="wrap">
+          <div class="head-1">
+            <p class="kicker"><span class="mono">08</span><b></b>{{install.kicker}}</p>
+            <h2 class="big">{{install.title}}</h2>
+            <p class="body">{{install.body}}</p>
+          </div>
+          <ol class="steps">
+            <li>
+              <span class="mono n">01</span>
+              <h3>{{install.steps.0.title}}</h3>
+              <p>{{install.steps.0.text}}</p>
+              <p class="chips"><a class="code-chip" href="{{links.theme}}" download>theme.css</a><a class="code-chip" href="{{links.manifest}}" download>manifest.json</a></p>
+            </li>
+            <li>
+              <span class="mono n">02</span>
+              <h3>{{install.steps.1.title}}</h3>
+              <p>{{install.steps.1.text}}</p>
+              <p class="chips"><code class="code-chip">.obsidian/themes/Nord Lane/</code></p>
+            </li>
+            <li>
+              <span class="mono n">03</span>
+              <h3>{{install.steps.2.title}}</h3>
+              <p>{{install.steps.2.text}}</p>
+            </li>
+          </ol>
+          <div class="install-actions">
+            <div class="actions">
+              <a class="button" href="{{links.theme}}" download>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14" /></svg>
+                {{install.download}}
+              </a>
+              <a class="text-link" href="{{links.manifest}}" download>{{install.manifest}}</a>
+              <a class="button ghost" href="{{links.github}}">{{install.github}}</a>
+            </div>
+            <p class="clone"><span>{{install.clone}}</span><code class="code-chip">python3 build.py /path/to/vault</code></p>
+          </div>
+          <p class="tested">{{install.tested}}</p>
+        </div>
+        <footer class="footer">
+          <div class="wrap footer-row">
+            <div class="footer-brand">
+              <p class="brand"><span class="chip" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="wordmark">Nord Lane</span><span class="version">{{version}}</span></p>
+              <p>{{footer.license}}</p>
+            </div>
+            <p class="credits">{{footer.credits}}</p>
+            <ul class="footer-links">
+              <li><a href="{{links.github}}">{{footer.github}}</a></li>
+              <li><a href="{{links.issues}}">{{footer.issues}}</a></li>
+              <li><a href="{{links.changelog}}">{{footer.changelog}}</a></li>
+              <li><a href="{{links.license}}">{{footer.licenseLink}}</a></li>
+            </ul>
+          </div>
+        </footer>
+      </section>
+    </main>
+
+    <script>
+      ;(() => {
+        // The light/dark comparison: the range input moves the seam.
+        const split = document.querySelector('.split')
+        const range = split && split.querySelector('.split-range')
+        if (range) {
+          const move = () => split.style.setProperty('--split', `${range.value}%`)
+          range.addEventListener('input', move)
+          move()
+        }
+        // A language picked here sticks: the English page stops following the browser.
+        for (const link of document.querySelectorAll('[data-lang]')) {
+          link.addEventListener('click', () => {
+            try {
+              localStorage.setItem('{{storageKey}}', link.dataset.lang)
+            } catch {
+              // No storage: the browser's language decides next time.
+            }
+          })
+        }
+      })()
+    </script>
+  </body>
+</html>

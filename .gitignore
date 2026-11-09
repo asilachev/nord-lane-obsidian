@@ -14,3 +14,6 @@ tools/live/userdata/
 # Plugins installed in the demo vault for testing (Style Settings).
 demo/.obsidian/plugins/
 demo/.obsidian/community-plugins.json
+
+# The landing page build (node scripts/build-site.mjs).
+_site/

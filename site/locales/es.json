@@ -1,0 +1,223 @@
+{
+  "meta": {
+    "title": "Nord Lane · un tema sereno y amplio para Obsidian",
+    "description": "Un tema sereno y amplio para Obsidian sobre la paleta Nord. El texto, las tablas, los resultados de Dataview y las incrustaciones se alinean en una columna, en claro y en oscuro, en el escritorio y en el móvil.",
+    "ogDescription": "Texto, tablas, Dataview e incrustaciones en una sola columna serena, en claro y en oscuro."
+  },
+  "nav": {
+    "sections": "Secciones",
+    "tables": "Tablas",
+    "cards": "Tarjetas",
+    "dashboards": "Paneles",
+    "mobile": "Móvil",
+    "install": "Instalar",
+    "language": "Idioma",
+    "github": "Estrella en GitHub"
+  },
+  "hero": {
+    "caption": "Tema de Obsidian",
+    "kicker": "Libre y de código abierto, sobre la paleta Nord",
+    "title": "Todo<br />se alinea.",
+    "titleEm": "4.2",
+    "lead": "Nord Lane es un tema sereno y amplio para Obsidian. El texto, las tablas, los resultados de Dataview y las incrustaciones comparten una sola columna, en claro y en oscuro, y el móvil muestra exactamente lo mismo que el escritorio.",
+    "install": "Instalar Nord Lane",
+    "github": "Ver en GitHub",
+    "meta": "Obsidian 1.5 o posterior · licencia MIT · v{{version}}",
+    "ruler": "75rem, una columna para todo",
+    "light": "Claro · todos los fondos en nord6a, líneas finas en nord4",
+    "dark": "Oscuro · Polar Night, acentos en Frost",
+    "compare": "Comparar claro y oscuro",
+    "alt": "La misma nota en Nord Lane, en claro a la izquierda y en oscuro a la derecha"
+  },
+  "facts": [
+    { "value": "75rem", "label": "Una columna", "sub": "texto, tablas, Dataview e incrustaciones" },
+    { "value": "15 px", "label": "Texto de tablas", "sub": "14 px en paneles de menos de 700 px" },
+    { "value": "2 modos", "label": "Claro y oscuro", "sub": "Snow Storm y Polar Night" },
+    { "value": "Geist", "label": "Incluida", "sub": "y Geist Mono, sin instalar nada" },
+    { "value": "Aa Жж", "label": "Latino y cirílico", "sub": "con ruso y serbio" },
+    { "value": "MIT", "label": "Código abierto", "sub": "con créditos a Nord y Geist" }
+  ],
+  "column": {
+    "kicker": "Una columna",
+    "title": "Nada sobresale del párrafo de arriba.",
+    "body": "El texto, las tablas, los resultados de Dataview y las incrustaciones comparten los mismos bordes, hasta 75rem, y menos en un panel más estrecho. Live Preview y la vista de lectura se ven igual, así que al cambiar entre ellas nada se mueve.",
+    "specs": [
+      { "key": "Columna", "value": "75rem, nunca más ancha que el panel menos sus márgenes" },
+      { "key": "Margen", "value": "2.5rem en escritorio, 1rem en el móvil" },
+      { "key": "Notas anchas", "value": "<code>cssclasses: [full]</code> ocupa todo el panel" }
+    ],
+    "diagram": {
+      "label": "Los bloques de una nota, todos entre los mismos dos bordes",
+      "heading": "Registro de lectura",
+      "book": "Libro",
+      "author": "Autor",
+      "year": "Año",
+      "pages": "Páginas",
+      "callout": "Una columna",
+      "text": "texto",
+      "table": "tabla",
+      "callout_tag": "callout",
+      "dataview": "dataview",
+      "embed": "incrustación"
+    }
+  },
+  "palette": {
+    "kicker": "Paleta",
+    "title": "Snow Storm de día.<br />Polar Night de noche.",
+    "body": "En modo claro, todos los fondos usan nord6a, un tono de Snow Storm a medio camino entre nord6 y el blanco, y las áreas se separan con líneas finas de nord4. El modo oscuro es Polar Night. Los acentos vienen de Frost y los estados de Aurora; si un color Nord es demasiado claro para texto pequeño, el texto usa un tono más oscuro del mismo matiz.",
+    "groups": [
+      { "name": "Polar Night", "desc": "Superficies oscuras, tinta del modo claro" },
+      { "name": "Snow Storm", "desc": "Superficies claras y líneas finas" },
+      { "name": "Frost", "desc": "Enlaces, botones, foco, mapa de calor" },
+      { "name": "Aurora", "desc": "Estados, callouts, etiquetas" }
+    ],
+    "added": "nuevo",
+    "light": {
+      "name": "Claro",
+      "sub": "sobre nord6a",
+      "note": "Pasos de texto sobre nord6a, Nord original → Nord Lane: enlaces 3,8 → 5,2:1, verde 1,9 → 5,8:1, ámbar 1,5 → 6,1:1, rojo 3,8 → 5,6:1, violeta 2,6 → 4,9:1."
+    },
+    "dark": {
+      "name": "Oscuro",
+      "sub": "sobre Polar Night",
+      "note": "Texto principal 9,2:1 sobre nord0, atenuado 5,7:1. Acentos en nord8, el Frost más brillante, para que enlaces y botones se lean con claridad."
+    },
+    "pills": ["Hecho", "Leyendo", "En espera", "Abandonado", "Releer"],
+    "roles": { "heading": "Título", "body": "Texto", "muted": "Atenuado", "link": "Un enlace", "tag": "#etiqueta" }
+  },
+  "tables": {
+    "kicker": "Tablas",
+    "title": "Un solo estilo de tabla, venga de donde venga.",
+    "body": "Las tablas de Markdown, las de Dataview y el editor de tablas de Live Preview comparten un mismo aspecto: texto de 15 px, encabezados discretos en mayúsculas, filas con líneas finas y cifras tabulares. En un panel de menos de 700 px, las tablas bajan a 14 px y las anchas mantienen un ancho legible y se desplazan en horizontal.",
+    "alt": "Una tabla de lecturas en una nota, en el modo claro de Nord Lane",
+    "points": [
+      "Encabezados de 11 px en mayúsculas sobre filas con líneas finas. En una tabla larga siguen a la vista mientras te desplazas.",
+      "Las etiquetas aparecen en la tabla como píldoras discretas, y los números usan cifras tabulares alineadas a la derecha.",
+      "Las tablas de Dataview toman el mismo estilo, y sus marcadores - aparecen como un guion tenue.",
+      "<code>cssclasses: [table-mono]</code> pone las tablas de una nota en Geist Mono, para libros de cuentas."
+    ]
+  },
+  "cards": {
+    "kicker": "Tarjetas",
+    "title": "Tarjetas con portada para cada colección.",
+    "body": "Las clases opcionales gc-* convierten una vista de dataviewjs en una cuadrícula de tarjetas con portada: libros en 2:3, juegos en una caja cuadrada, con insignias en las esquinas, filtros y una línea de datos bajo cada título. Un libro sin archivo de portada recibe una portada tipográfica, como aquí.",
+    "specs": [
+      { "key": "Cuadrícula", "value": "gc-grid, columnas de 160 px, 132 px para libros" },
+      { "key": "Tarjeta", "value": "gc-card, gc-cover, gc-title, gc-meta" },
+      { "key": "Extras", "value": "gc-filter, gc-badge, gc-nocover" }
+    ],
+    "alt": "Cuatro libros como tarjetas con portadas tipográficas"
+  },
+  "dashboards": {
+    "kicker": "Paneles",
+    "title": "Paneles con el mismo estilo que tus notas.",
+    "body": "Las clases nl-* dan a tus vistas de dataviewjs un encabezado de página, franjas de estadísticas, píldoras, tablas, mapas de calor y líneas de tiempo, con la misma tipografía y los mismos colores que tus notas. No hacen nada hasta que una vista las usa.",
+    "docs": "El marcado de cada una está en <a href=\"{{links.components}}\">docs/components.md</a>.",
+    "alt": "Un panel de lectura hecho con las clases nl-*, en modo oscuro"
+  },
+  "mobile": {
+    "kicker": "Móvil",
+    "title": "Las mismas notas en tu móvil.",
+    "body": "Geist y Geist Mono vienen incluidas, con latino y cirílico, ruso y serbio por igual, así que móviles y tabletas muestran exactamente lo mismo que el escritorio. El diseño sigue al panel de la nota, no a la pantalla: por debajo de 700 px, las tablas bajan a 14 px y se desplazan en horizontal, las estadísticas pasan a dos por fila y cada zona táctil mide 44 px.",
+    "captions": [
+      "Notas de campo, claro: tabla con desplazamiento lateral, ruso y serbio",
+      "Libros, oscuro: tarjetas de tres en tres",
+      "Lectura, claro: estadísticas de dos en dos"
+    ],
+    "alts": [
+      "Un móvil en modo claro con una tabla que se desplaza en horizontal y texto cirílico",
+      "Un móvil en modo oscuro con tarjetas de libros de dos en dos",
+      "Un móvil en modo claro con un panel de lectura"
+    ]
+  },
+  "options": {
+    "kicker": "Opciones",
+    "title": "Opciones cuando las quieras.",
+    "body": "No hay pantalla de ajustes que aprender. Añade una clase al frontmatter cuando una nota necesite más espacio, una medida de lectura o un libro de cuentas. Cambia la columna, el texto de las tablas o el tamaño del frontmatter de toda la bóveda con Style Settings o un snippet de CSS.",
+    "note": "En el frontmatter de una nota",
+    "snippet": "En un snippet de CSS, para toda la bóveda",
+    "full": "todo el ancho del panel",
+    "mono": "tablas de esta nota en Geist Mono",
+    "prose": "texto de lectura a una medida cómoda",
+    "col": "la columna, 75rem por defecto",
+    "bleed": "tablas y Dataview fuera del texto, 0 por defecto",
+    "proseMax": "la medida de lectura, 46rem por defecto",
+    "more": "Todas las opciones están en el <a href=\"{{links.readme}}#options\">README</a>."
+  },
+  "install": {
+    "kicker": "Instalación",
+    "title": "Dos archivos, una carpeta.",
+    "body": "Hasta que Nord Lane llegue al catálogo de temas de la comunidad, instálalo a mano. Funciona en escritorio y en móvil, sin plugins.",
+    "steps": [
+      { "title": "Descarga", "text": "Descarga theme.css y manifest.json." },
+      { "title": "Copia", "text": "Pon los dos archivos en una carpeta llamada Nord Lane, dentro de la carpeta de temas de tu bóveda." },
+      { "title": "Elige", "text": "Abre los ajustes, luego Apariencia, y elige Nord Lane en Temas." }
+    ],
+    "download": "Descargar theme.css",
+    "manifest": "y manifest.json",
+    "github": "Ver en GitHub",
+    "clone": "O clónalo y ejecuta",
+    "tested": "Probado en Obsidian 1.15 en escritorio y en su emulación móvil, en Live Preview y en vista de lectura, en claro y en oscuro."
+  },
+  "footer": {
+    "license": "Licencia MIT. Hecho por Alex Silachev.",
+    "credits": "Colores: <a href=\"https://www.nordtheme.com\">Nord</a> de Arctic Ice Studio y Sven Greb (MIT). Fuentes: <a href=\"https://github.com/vercel/geist-font\">Geist y Geist Mono</a> de los Geist Project Authors, bajo la SIL Open Font License 1.1.",
+    "github": "GitHub",
+    "issues": "Incidencias",
+    "changelog": "Cambios",
+    "licenseLink": "Licencia"
+  },
+  "demo": {
+    "files": { "field": "Notas de campo", "books": "Libros", "reading": "Lectura", "library": "Biblioteca" },
+    "field": {
+      "intro": "Nord Lane es un tema sereno y amplio sobre la paleta [Nord](https://www.nordtheme.com). El modo claro usa **nord6a**, un paso más claro que Snow Storm, y el oscuro, Polar Night. Texto, tablas e incrustaciones comparten una columna, así que nada sobresale del párrafo de arriba.",
+      "week": "Esta semana",
+      "tasks": ["Pasar la lista de lectura a una tabla", "Ordenar la estantería por año", "Escribir las notas de reseña", "Planear las próximas seis semanas"],
+      "callout": "Una columna",
+      "calloutText": "Texto, tablas y resultados de Dataview comparten los mismos bordes, hasta 75rem, y menos en un panel estrecho. En el móvil, las tablas anchas mantienen un ancho legible y se desplazan en horizontal.",
+      "list": "Lista de lectura",
+      "book": "Libro",
+      "author": "Autor",
+      "topic": "Tema",
+      "year": "Año",
+      "tags": ["negocios", "personas", "negociación", "filosofía"]
+    },
+    "books": {
+      "sub": "Cuatro libros, uno en lectura",
+      "all": "Todos 4",
+      "read": "Leídos 2",
+      "next": "Siguiente 1",
+      "reading": "LEYENDO",
+      "done": "LEÍDO",
+      "queued": "SIGUIENTE"
+    },
+    "reading": {
+      "sub": "Cuatro libros, uno en curso",
+      "stats": [
+        { "v": "4", "l": "libros en la estantería", "s": "1 en lectura" },
+        { "v": "2", "l": "leídos", "s": "este año" },
+        { "v": "24", "l": "páginas al día", "s": "mejor: octubre" },
+        { "v": "96", "l": "días con notas", "s": "de 168" },
+        { "v": "1936", "l": "el más antiguo", "s": "Carnegie" },
+        { "v": "2011", "l": "el más reciente", "s": "Ries" }
+      ],
+      "days": "Días de lectura",
+      "daysMeta": "últimas 24 semanas",
+      "months": ["jun", "jul", "ago", "sep", "oct", "nov"],
+      "less": "Menos",
+      "more": "Más",
+      "shelf": "Estantería",
+      "shelfMeta": "por estado",
+      "book": "Libro",
+      "author": "Autor",
+      "status": "Estado",
+      "year": "Año",
+      "reading": "Leyendo",
+      "done": "Leído",
+      "next": "Siguiente",
+      "published": "Publicación",
+      "publishedMeta": "de 1930 a hoy",
+      "now": "hoy"
+    }
+  }
+}

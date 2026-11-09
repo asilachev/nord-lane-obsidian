@@ -1,0 +1,223 @@
+{
+  "meta": {
+    "title": "Nord Lane · ein ruhiges, breites Obsidian-Theme",
+    "description": "Ein ruhiges, breites Obsidian-Theme auf der Nord-Palette. Text, Tabellen, Dataview-Ausgaben und Einbettungen stehen in einer Spalte, hell wie dunkel, am Desktop und auf dem Smartphone.",
+    "ogDescription": "Text, Tabellen, Dataview und Einbettungen in einer ruhigen Spalte, hell wie dunkel."
+  },
+  "nav": {
+    "sections": "Abschnitte",
+    "tables": "Tabellen",
+    "cards": "Karten",
+    "dashboards": "Dashboards",
+    "mobile": "Mobil",
+    "install": "Installation",
+    "language": "Sprache",
+    "github": "Auf GitHub"
+  },
+  "hero": {
+    "caption": "Obsidian-Theme",
+    "kicker": "Frei und quelloffen, auf der Nord-Palette",
+    "title": "Alles in<br />einer Linie.",
+    "titleEm": "4.75",
+    "lead": "Nord Lane ist ein ruhiges, breites Theme für Obsidian. Text, Tabellen, Dataview-Ausgaben und Einbettungen teilen sich eine Spalte, hell wie dunkel, und dein Smartphone zeigt genau das, was dein Desktop zeigt.",
+    "install": "Nord Lane installieren",
+    "github": "Auf GitHub",
+    "meta": "Obsidian 1.5 oder neuer · MIT-Lizenz · v{{version}}",
+    "ruler": "75rem, eine Spalte für alles",
+    "light": "Hell · jeder Hintergrund in nord6a, Haarlinien in nord4",
+    "dark": "Dunkel · Polar Night, Akzente in Frost",
+    "compare": "Hell und dunkel vergleichen",
+    "alt": "Dieselbe Notiz in Nord Lane, links hell und rechts dunkel"
+  },
+  "facts": [
+    { "value": "75rem", "label": "Eine Spalte", "sub": "Text, Tabellen, Dataview, Einbettungen" },
+    { "value": "15 px", "label": "Tabellentext", "sub": "14 px in Bereichen unter 700 px" },
+    { "value": "2 Modi", "label": "Hell und dunkel", "sub": "Snow Storm und Polar Night" },
+    { "value": "Geist", "label": "Eingebaut", "sub": "plus Geist Mono, nichts zu installieren" },
+    { "value": "Aa Жж", "label": "Latein, Kyrillisch", "sub": "Russisch und Serbisch inklusive" },
+    { "value": "MIT", "label": "Open Source", "sub": "Nord und Geist genannt" }
+  ],
+  "column": {
+    "kicker": "Eine Spalte",
+    "title": "Nichts ragt über den Absatz darüber hinaus.",
+    "body": "Text, Tabellen, Dataview-Ausgaben und Einbettungen teilen dieselben Kanten, bis 75rem, und weniger in einem schmaleren Bereich. Live Preview und Leseansicht sehen gleich aus, beim Umschalten verrutscht nichts.",
+    "specs": [
+      { "key": "Spalte", "value": "75rem, nie breiter als der Bereich abzüglich der Ränder" },
+      { "key": "Rand", "value": "2.5rem am Desktop, 1rem am Smartphone" },
+      { "key": "Breite Notizen", "value": "<code>cssclasses: [full]</code> nutzt den ganzen Bereich" }
+    ],
+    "diagram": {
+      "label": "Die Blöcke einer Notiz, alle zwischen denselben zwei Kanten",
+      "heading": "Leseprotokoll",
+      "book": "Buch",
+      "author": "Autor",
+      "year": "Jahr",
+      "pages": "Seiten",
+      "callout": "Eine Spalte",
+      "text": "Text",
+      "table": "Tabelle",
+      "callout_tag": "Callout",
+      "dataview": "Dataview",
+      "embed": "Einbettung"
+    }
+  },
+  "palette": {
+    "kicker": "Palette",
+    "title": "Snow Storm am Tag.<br />Polar Night bei Nacht.",
+    "body": "Im hellen Modus liegt jeder Hintergrund auf nord6a, einem Snow-Storm-Ton auf halbem Weg zwischen nord6 und Weiß; Bereiche trennen Haarlinien in nord4. Der dunkle Modus ist Polar Night. Akzente kommen aus Frost, Zustände aus Aurora, und wo eine Nord-Farbe für kleinen Text zu hell ist, nimmt der Text eine dunklere Stufe desselben Farbtons.",
+    "groups": [
+      { "name": "Polar Night", "desc": "Dunkle Flächen, Schrift im hellen Modus" },
+      { "name": "Snow Storm", "desc": "Helle Flächen und Haarlinien" },
+      { "name": "Frost", "desc": "Links, Buttons, Fokus, Heatmap" },
+      { "name": "Aurora", "desc": "Zustände, Callouts, Tags" }
+    ],
+    "added": "neu",
+    "light": {
+      "name": "Hell",
+      "sub": "auf nord6a",
+      "note": "Textstufen auf nord6a, Nord pur → Nord Lane: Links 3,8 → 5,2:1, Grün 1,9 → 5,8:1, Bernstein 1,5 → 6,1:1, Rot 3,8 → 5,6:1, Violett 2,6 → 4,9:1."
+    },
+    "dark": {
+      "name": "Dunkel",
+      "sub": "auf Polar Night",
+      "note": "Fließtext 9,2:1 auf nord0, gedämpft 5,7:1. Akzente in nord8, dem hellsten Frost, damit Links und Buttons klar bleiben."
+    },
+    "pills": ["Erledigt", "Am Lesen", "Wartet", "Abgebrochen", "Erneut lesen"],
+    "roles": { "heading": "Überschrift", "body": "Fließtext", "muted": "Gedämpft", "link": "Ein Link", "tag": "#tag" }
+  },
+  "tables": {
+    "kicker": "Tabellen",
+    "title": "Ein Tabellenstil, egal woher die Tabelle kommt.",
+    "body": "Markdown-Tabellen, Dataview-Tabellen und der Tabelleneditor in Live Preview sehen gleich aus: 15 px Text, ruhige Kopfzeilen in Großbuchstaben, Haarlinien zwischen den Zeilen und Tabellenziffern. In Bereichen unter 700 px werden Tabellen 14 px groß, breite behalten eine lesbare Breite und scrollen seitlich.",
+    "alt": "Eine Leseliste als Tabelle in einer Notiz, im hellen Modus von Nord Lane",
+    "points": [
+      "Kopfzeilen in 11 px Großbuchstaben über Zeilen mit Haarlinien. Bei langen Tabellen bleiben sie beim Scrollen sichtbar.",
+      "Tags stehen als ruhige Pills in der Tabelle, Zahlen nutzen Tabellenziffern und stehen rechtsbündig.",
+      "Dataview-Tabellen übernehmen denselben Stil, und ihre Platzhalter - erscheinen als blasser Strich.",
+      "<code>cssclasses: [table-mono]</code> setzt die Tabellen einer Notiz in Geist Mono, für Kassenbücher."
+    ]
+  },
+  "cards": {
+    "kicker": "Karten",
+    "title": "Cover-Karten für jede Sammlung.",
+    "body": "Optionale gc-*-Klassen machen aus einer dataviewjs-Ansicht ein Raster aus Cover-Karten: Bücher im Format 2:3, Spiele in einer quadratischen Box, mit Eck-Badges, Filter-Chips und einer Metazeile unter jedem Titel. Ein Buch ohne Cover-Datei bekommt ein gesetztes Ersatz-Cover, wie hier.",
+    "specs": [
+      { "key": "Raster", "value": "gc-grid, 160-px-Spalten, 132 px für Bücher" },
+      { "key": "Karte", "value": "gc-card, gc-cover, gc-title, gc-meta" },
+      { "key": "Extras", "value": "gc-filter, gc-badge, gc-nocover" }
+    ],
+    "alt": "Vier Bücher als Cover-Karten mit gesetzten Covern"
+  },
+  "dashboards": {
+    "kicker": "Dashboards",
+    "title": "Dashboards im selben Stil wie deine Notizen.",
+    "body": "nl-*-Klassen geben deinen dataviewjs-Ansichten Seitenkopf, Kennzahlenleisten, Pills, Tabellen, Heatmaps und Zeitleisten, in derselben Schrift und denselben Farben wie deine Notizen. Sie tun nichts, bis eine Ansicht sie nutzt.",
+    "docs": "Das Markup für jede steht in <a href=\"{{links.components}}\">docs/components.md</a>.",
+    "alt": "Ein Lese-Dashboard aus den nl-*-Klassen, im dunklen Modus"
+  },
+  "mobile": {
+    "kicker": "Mobil",
+    "title": "Dieselben Notizen auf dem Smartphone.",
+    "body": "Geist und Geist Mono sind eingebettet, mit Latein und Kyrillisch, Russisch wie Serbisch, damit Smartphones und Tablets genau das zeigen, was der Desktop zeigt. Das Layout folgt dem Notizbereich, nicht dem Bildschirm: unter 700 px werden Tabellen 14 px groß und scrollen seitlich, Kennzahlenleisten falten sich auf zwei pro Zeile, und jedes Tippziel misst 44 px.",
+    "captions": [
+      "Feldnotizen, hell: Tabelle scrollt seitlich, Russisch und Serbisch",
+      "Bücher, dunkel: Cover-Karten zu dritt",
+      "Lesen, hell: Kennzahlen zu zweit"
+    ],
+    "alts": [
+      "Ein Smartphone im hellen Modus mit einer seitlich scrollenden Tabelle und kyrillischem Text",
+      "Ein Smartphone im dunklen Modus mit Buchkarten zu zweit",
+      "Ein Smartphone im hellen Modus mit einem Lese-Dashboard"
+    ]
+  },
+  "options": {
+    "kicker": "Optionen",
+    "title": "Optionen, wenn du sie willst.",
+    "body": "Es gibt keinen Einstellungsbildschirm zu lernen. Gib einer Notiz im Frontmatter eine Klasse, wenn sie mehr Platz, ein Lesemaß oder ein Kassenbuch braucht. Spalte, Tabellentext oder Frontmatter-Größe änderst du für den ganzen Vault mit Style Settings oder einem CSS-Snippet.",
+    "note": "Im Frontmatter einer Notiz",
+    "snippet": "In einem CSS-Snippet, für den ganzen Vault",
+    "full": "der ganze Bereich",
+    "mono": "Tabellen dieser Notiz in Geist Mono",
+    "prose": "Lesetext in angenehmer Breite",
+    "col": "die Spalte, Standard 75rem",
+    "bleed": "Tabellen, Dataview über den Text, Standard 0",
+    "proseMax": "das Lesemaß, Standard 46rem",
+    "more": "Alle Optionen stehen in der <a href=\"{{links.readme}}#options\">README</a>."
+  },
+  "install": {
+    "kicker": "Installation",
+    "title": "Zwei Dateien, ein Ordner.",
+    "body": "Bis Nord Lane im Community-Theme-Browser ist, installierst du es von Hand. Es läuft auf Desktop und Mobilgeräten, ganz ohne Plugins.",
+    "steps": [
+      { "title": "Herunterladen", "text": "Lade theme.css und manifest.json herunter." },
+      { "title": "Kopieren", "text": "Lege beide Dateien in einen Ordner namens Nord Lane im Theme-Ordner deines Vaults." },
+      { "title": "Auswählen", "text": "Öffne die Einstellungen, dann Darstellung, und wähle Nord Lane unter Themes." }
+    ],
+    "download": "theme.css herunterladen",
+    "manifest": "und manifest.json",
+    "github": "Auf GitHub ansehen",
+    "clone": "Oder klonen und ausführen:",
+    "tested": "Getestet in Obsidian 1.15 am Desktop und in der mobilen Emulation, in Live Preview und Leseansicht, hell und dunkel."
+  },
+  "footer": {
+    "license": "MIT-Lizenz. Von Alex Silachev.",
+    "credits": "Farben: <a href=\"https://www.nordtheme.com\">Nord</a> von Arctic Ice Studio und Sven Greb (MIT). Schriften: <a href=\"https://github.com/vercel/geist-font\">Geist und Geist Mono</a> von den Geist Project Authors, unter der SIL Open Font License 1.1.",
+    "github": "GitHub",
+    "issues": "Issues",
+    "changelog": "Änderungen",
+    "licenseLink": "Lizenz"
+  },
+  "demo": {
+    "files": { "field": "Feldnotizen", "books": "Bücher", "reading": "Lesen", "library": "Bibliothek" },
+    "field": {
+      "intro": "Nord Lane ist ein ruhiges, breites Theme auf der [Nord](https://www.nordtheme.com)-Palette. Der helle Modus liegt auf **nord6a**, eine Stufe heller als Snow Storm, der dunkle auf Polar Night. Text, Tabellen und Einbettungen teilen eine Spalte, also ragt nichts über den Absatz darüber hinaus.",
+      "week": "Diese Woche",
+      "tasks": ["Leseliste in eine Tabelle bringen", "Regal nach Jahr sortieren", "Rezensionsnotizen schreiben", "Die nächsten sechs Wochen planen"],
+      "callout": "Eine Spalte",
+      "calloutText": "Text, Tabellen und Dataview-Ausgaben teilen dieselben Kanten, bis 75rem, in schmalen Bereichen weniger. Auf dem Smartphone behalten breite Tabellen eine lesbare Breite und scrollen seitlich.",
+      "list": "Leseliste",
+      "book": "Buch",
+      "author": "Autor",
+      "topic": "Thema",
+      "year": "Jahr",
+      "tags": ["business", "menschen", "verhandlung", "philosophie"]
+    },
+    "books": {
+      "sub": "Vier Bücher, eines am Lesen",
+      "all": "Alle 4",
+      "read": "Gelesen 2",
+      "next": "Als Nächstes 1",
+      "reading": "AM LESEN",
+      "done": "GELESEN",
+      "queued": "NÄCHSTES"
+    },
+    "reading": {
+      "sub": "Vier Bücher, eines in Arbeit",
+      "stats": [
+        { "v": "4", "l": "Bücher im Regal", "s": "1 am Lesen" },
+        { "v": "2", "l": "gelesen", "s": "dieses Jahr" },
+        { "v": "24", "l": "Seiten pro Tag", "s": "bester: Oktober" },
+        { "v": "96", "l": "Tage mit Notizen", "s": "von 168" },
+        { "v": "1936", "l": "ältestes", "s": "Carnegie" },
+        { "v": "2011", "l": "neuestes", "s": "Ries" }
+      ],
+      "days": "Lesetage",
+      "daysMeta": "letzte 24 Wochen",
+      "months": ["Jun", "Jul", "Aug", "Sep", "Okt", "Nov"],
+      "less": "Weniger",
+      "more": "Mehr",
+      "shelf": "Regal",
+      "shelfMeta": "nach Status",
+      "book": "Buch",
+      "author": "Autor",
+      "status": "Status",
+      "year": "Jahr",
+      "reading": "Am Lesen",
+      "done": "Gelesen",
+      "next": "Als Nächstes",
+      "published": "Erscheinungsjahr",
+      "publishedMeta": "1930 bis heute",
+      "now": "heute"
+    }
+  }
+}

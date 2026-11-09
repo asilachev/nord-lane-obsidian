@@ -1,0 +1,223 @@
+{
+  "meta": {
+    "title": "Nord Lane · a calm, wide Obsidian theme",
+    "description": "A calm, wide Obsidian theme on the Nord palette. Text, tables, Dataview output and embeds line up in one column, in light and dark, on desktop and phone.",
+    "ogDescription": "Text, tables, Dataview output and embeds in one calm column, in light and dark."
+  },
+  "nav": {
+    "sections": "Sections",
+    "tables": "Tables",
+    "cards": "Cards",
+    "dashboards": "Dashboards",
+    "mobile": "Mobile",
+    "install": "Install",
+    "language": "Language",
+    "github": "Star on GitHub"
+  },
+  "hero": {
+    "caption": "Obsidian theme",
+    "kicker": "Free and open source, on the Nord palette",
+    "title": "Everything<br />lines up.",
+    "titleEm": "4.8",
+    "lead": "Nord Lane is a calm, wide theme for Obsidian. Text, tables, Dataview output and embeds share one column, in light and dark, and your phone shows exactly what your desktop does.",
+    "install": "Install Nord Lane",
+    "github": "View on GitHub",
+    "meta": "Obsidian 1.5 or later · MIT license · v{{version}}",
+    "ruler": "75rem, one column for everything",
+    "light": "Light · every background on nord6a, hairlines in nord4",
+    "dark": "Dark · Polar Night, accents in Frost",
+    "compare": "Compare light and dark",
+    "alt": "The same note in Nord Lane, light on the left and dark on the right"
+  },
+  "facts": [
+    { "value": "75rem", "label": "One column", "sub": "text, tables, Dataview and embeds" },
+    { "value": "15 px", "label": "Table text", "sub": "14 px in a pane under 700 px" },
+    { "value": "2 modes", "label": "Light and dark", "sub": "Snow Storm and Polar Night" },
+    { "value": "Geist", "label": "Built in", "sub": "and Geist Mono, nothing to install" },
+    { "value": "Aa Жж", "label": "Latin and Cyrillic", "sub": "Russian and Serbian included" },
+    { "value": "MIT", "label": "Open source", "sub": "Nord and Geist credited" }
+  ],
+  "column": {
+    "kicker": "One column",
+    "title": "Nothing juts out past the paragraph above it.",
+    "body": "Text, tables, Dataview output and embeds share the same edges, up to 75rem, and less on a narrower pane. Live Preview and reading view look the same, so switching between them moves nothing.",
+    "specs": [
+      { "key": "Column", "value": "75rem, never wider than the pane less its gutters" },
+      { "key": "Gutter", "value": "2.5rem on the desktop, 1rem on a phone" },
+      { "key": "Wide notes", "value": "<code>cssclasses: [full]</code> takes the whole pane" }
+    ],
+    "diagram": {
+      "label": "A note's blocks, all between the same two edges",
+      "heading": "Reading log",
+      "book": "Book",
+      "author": "Author",
+      "year": "Year",
+      "pages": "Pages",
+      "callout": "One column",
+      "text": "text",
+      "table": "table",
+      "callout_tag": "callout",
+      "dataview": "dataview",
+      "embed": "embed"
+    }
+  },
+  "palette": {
+    "kicker": "Palette",
+    "title": "Snow Storm by day.<br />Polar Night after dark.",
+    "body": "Light mode puts every background on nord6a, a Snow Storm step halfway between nord6 and white, and separates areas with nord4 hairlines. Dark mode is Polar Night. Accents come from Frost, states from Aurora, and where a Nord colour is too light for small text, the text takes a darker step of the same hue.",
+    "groups": [
+      { "name": "Polar Night", "desc": "Dark surfaces, light-mode ink" },
+      { "name": "Snow Storm", "desc": "Light surfaces and hairlines" },
+      { "name": "Frost", "desc": "Links, buttons, focus, heat" },
+      { "name": "Aurora", "desc": "States, callouts, tags" }
+    ],
+    "added": "added",
+    "light": {
+      "name": "Light",
+      "sub": "on nord6a",
+      "note": "Text steps on nord6a, raw Nord → Nord Lane: links 3.8 → 5.2:1, green 1.9 → 5.8:1, amber 1.5 → 6.1:1, red 3.8 → 5.6:1, violet 2.6 → 4.9:1."
+    },
+    "dark": {
+      "name": "Dark",
+      "sub": "on Polar Night",
+      "note": "Body text 9.2:1 on nord0, muted 5.7:1. Accents in nord8, the brightest Frost, so links and buttons stay clear."
+    },
+    "pills": ["Done", "Reading", "Waiting", "Dropped", "Re-read"],
+    "roles": { "heading": "Heading", "body": "Body text", "muted": "Muted", "link": "A link", "tag": "#tag" }
+  },
+  "tables": {
+    "kicker": "Tables",
+    "title": "One table style, wherever the table comes from.",
+    "body": "Markdown tables, Dataview tables and the Live Preview table editor share one look: 15 px text, quiet uppercase headers, hairline rows and tabular numbers. In a pane under 700 px, tables drop to 14 px, and wide ones keep a readable width and scroll sideways.",
+    "alt": "A reading list table in a note, in Nord Lane's light mode",
+    "points": [
+      "Headers in 11 px uppercase over hairline rows. On a long table they stay in view while you scroll.",
+      "Tags sit in the table as quiet pills, and numbers use tabular figures that line up on the right.",
+      "Dataview tables take the same style, and Dataview's - placeholders show as a faint dash.",
+      "<code>cssclasses: [table-mono]</code> sets one note's tables in Geist Mono, for ledgers."
+    ]
+  },
+  "cards": {
+    "kicker": "Cards",
+    "title": "Cover cards for every collection.",
+    "body": "Optional gc-* classes turn a dataviewjs view into a grid of cover cards: books at 2:3, games in a square box, with corner badges, filter chips and a meta line under each title. A book without a cover file gets a typeset stand-in, as here.",
+    "specs": [
+      { "key": "Grid", "value": "gc-grid, 160 px columns, 132 px for books" },
+      { "key": "Card", "value": "gc-card, gc-cover, gc-title, gc-meta" },
+      { "key": "Extras", "value": "gc-filter, gc-badge, gc-nocover" }
+    ],
+    "alt": "Four books as cover cards with typeset covers"
+  },
+  "dashboards": {
+    "kicker": "Dashboards",
+    "title": "Dashboards in the same style as your notes.",
+    "body": "nl-* classes give your dataviewjs views a page head, stat strips, pills, tables, heatmaps and timelines, in the same type and colours as your notes. They do nothing until a view uses them.",
+    "docs": "The markup each one expects is in <a href=\"{{links.components}}\">docs/components.md</a>.",
+    "alt": "A reading dashboard built from the nl-* classes, in dark mode"
+  },
+  "mobile": {
+    "kicker": "Mobile",
+    "title": "The same notes on your phone.",
+    "body": "Geist and Geist Mono are embedded with Latin and Cyrillic, Russian and Serbian alike, so phones and tablets render exactly what the desktop does. Layouts follow the note pane, not the screen: under 700 px, tables drop to 14 px and scroll sideways, stat strips fold to two across, and every tap target is 44 px.",
+    "captions": [
+      "Field notes, light: a sideways table, Russian and Serbian",
+      "Books, dark: cover cards three across",
+      "Reading, light: stats two across"
+    ],
+    "alts": [
+      "A phone in light mode with a table that scrolls sideways and Cyrillic text",
+      "A phone in dark mode with book cards two across",
+      "A phone in light mode with a reading dashboard"
+    ]
+  },
+  "options": {
+    "kicker": "Options",
+    "title": "Options when you want them.",
+    "body": "There is no settings screen to learn. Add a class to a note's frontmatter when one note needs more room, a reading measure or a ledger. Change the column, the table text or the frontmatter size for the whole vault with Style Settings or a CSS snippet.",
+    "note": "In a note's frontmatter",
+    "snippet": "In a CSS snippet, for the whole vault",
+    "full": "the whole pane width",
+    "mono": "this note's tables in Geist Mono",
+    "prose": "reading text to a comfortable measure",
+    "col": "the column, 75rem by default",
+    "bleed": "tables and Dataview past the text, 0 by default",
+    "proseMax": "the prose measure, 46rem by default",
+    "more": "Every option is in the <a href=\"{{links.readme}}#options\">README</a>."
+  },
+  "install": {
+    "kicker": "Install",
+    "title": "Two files, one folder.",
+    "body": "Until Nord Lane is in the community theme browser, install it by hand. It works on desktop and mobile, with no plugins required.",
+    "steps": [
+      { "title": "Download", "text": "Get theme.css and manifest.json." },
+      { "title": "Copy", "text": "Put both files in a folder named Nord Lane, inside your vault's themes folder." },
+      { "title": "Choose", "text": "Open Settings, then Appearance, and pick Nord Lane under Themes." }
+    ],
+    "download": "Download theme.css",
+    "manifest": "and manifest.json",
+    "github": "View on GitHub",
+    "clone": "Or clone it and run",
+    "tested": "Tested in Obsidian 1.15 on desktop and in its mobile emulation, in Live Preview and reading view, light and dark."
+  },
+  "footer": {
+    "license": "MIT license. Made by Alex Silachev.",
+    "credits": "Colours: <a href=\"https://www.nordtheme.com\">Nord</a> by Arctic Ice Studio and Sven Greb (MIT). Fonts: <a href=\"https://github.com/vercel/geist-font\">Geist and Geist Mono</a> by the Geist Project Authors, under the SIL Open Font License 1.1.",
+    "github": "GitHub",
+    "issues": "Issues",
+    "changelog": "Changelog",
+    "licenseLink": "License"
+  },
+  "demo": {
+    "files": { "field": "Field notes", "books": "Books", "reading": "Reading", "library": "Library" },
+    "field": {
+      "intro": "Nord Lane is a calm, wide theme on the [Nord](https://www.nordtheme.com) palette. Light mode sits on **nord6a**, a step lighter than Snow Storm, and dark mode on Polar Night. Text, tables and embeds share one column, so nothing juts out past the paragraph above it.",
+      "week": "This week",
+      "tasks": ["Move the reading list into one table", "Sort the shelf by year", "Write up the review notes", "Plan the next six weeks"],
+      "callout": "One column",
+      "calloutText": "Text, tables and Dataview output share the same edges, up to 75rem, and less on a narrow pane. On a phone, wide tables keep a readable width and scroll sideways.",
+      "list": "Reading list",
+      "book": "Book",
+      "author": "Author",
+      "topic": "Topic",
+      "year": "Year",
+      "tags": ["business", "people", "negotiation", "philosophy"]
+    },
+    "books": {
+      "sub": "Four books, one reading",
+      "all": "All 4",
+      "read": "Read 2",
+      "next": "Next 1",
+      "reading": "READING",
+      "done": "READ",
+      "queued": "NEXT"
+    },
+    "reading": {
+      "sub": "Four books, one in progress",
+      "stats": [
+        { "v": "4", "l": "books on the shelf", "s": "1 reading" },
+        { "v": "2", "l": "read", "s": "this year" },
+        { "v": "24", "l": "pages a day", "s": "best: October" },
+        { "v": "96", "l": "days with notes", "s": "of 168" },
+        { "v": "1936", "l": "oldest", "s": "Carnegie" },
+        { "v": "2011", "l": "newest", "s": "Ries" }
+      ],
+      "days": "Reading days",
+      "daysMeta": "last 24 weeks",
+      "months": ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov"],
+      "less": "Less",
+      "more": "More",
+      "shelf": "Shelf",
+      "shelfMeta": "by status",
+      "book": "Book",
+      "author": "Author",
+      "status": "Status",
+      "year": "Year",
+      "reading": "Reading",
+      "done": "Read",
+      "next": "Next",
+      "published": "Published",
+      "publishedMeta": "1930 to now",
+      "now": "now"
+    }
+  }
+}
