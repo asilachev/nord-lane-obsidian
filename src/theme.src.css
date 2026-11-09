@@ -11,6 +11,75 @@
    installs it there); edit this file, not the built one.
    ========================================================================== */
 
+/* @settings
+
+name: Nord Lane
+id: nord-lane
+settings:
+    -
+        id: nl-width-heading
+        title: Width
+        type: heading
+        level: 2
+        collapsed: false
+    -
+        id: nl-col-max
+        title: Column width
+        description: Text, tables and Dataview output share one column up to this width.
+        type: variable-text
+        default: 75rem
+    -
+        id: nl-bleed
+        title: Table bleed
+        description: How far tables and Dataview output may hang past the text on each side.
+        type: variable-text
+        default: 0px
+    -
+        id: nl-prose-max
+        title: Prose measure
+        description: "Paragraphs, lists and headings in notes with cssclasses: [prose]."
+        type: variable-text
+        default: 46rem
+    -
+        id: nl-type-heading
+        title: Type
+        type: heading
+        level: 2
+        collapsed: false
+    -
+        id: table-text-size
+        title: Table text size
+        description: Markdown, Dataview and dashboard tables (panes under 700 px keep 14 px).
+        type: variable-number-slider
+        default: 15
+        min: 12
+        max: 18
+        step: 1
+        format: px
+    -
+        id: nl-frontmatter-size
+        title: Frontmatter size
+        description: The YAML frontmatter in Live Preview and properties in reading view.
+        type: variable-number-slider
+        default: 13
+        min: 11
+        max: 16
+        step: 1
+        format: px
+    -
+        id: nl-extras-heading
+        title: Extras
+        type: heading
+        level: 2
+        collapsed: false
+    -
+        id: nl-meta-strip
+        title: Meta strip
+        description: "In reading view, a section headed ## Meta becomes one quiet strip of its list."
+        type: class-toggle
+        default: false
+*/
+
 /* ---------- 1. Type, sizes, shapes (both modes) ---------- */
 
 body {
@@ -82,6 +151,7 @@ body {
   --nl-col-max: 75rem;
   --nl-bleed: 0px;
   --nl-prose-max: 46rem;  /* cssclasses: [prose]: paragraphs, lists and headings, about 95 characters */
+  --nl-frontmatter-size: 13px;
   /* Obsidian pads the reading view and the editor with --file-margins: the sides are the
      gutter, so a note's edge sits one gutter from the pane's edge, never two. */
   --file-margins: 32px var(--nl-gutter);
@@ -367,17 +437,18 @@ body.is-mobile {
    property is for editing, so its button stays out of reading view. */
 .markdown-preview-view {
   --metadata-label-font: var(--font-monospace);
-  --metadata-label-font-size: 13px;
-  --metadata-input-font-size: 13px;
+  --metadata-label-font-size: var(--nl-frontmatter-size);
+  --metadata-input-font-size: var(--nl-frontmatter-size);
   --metadata-label-text-color: var(--text-faint);
   --metadata-input-text-color: var(--text-muted);
 }
 .markdown-preview-view:is(.dashboard, .hide-properties) { --metadata-display-reading: none; }
 .markdown-preview-view .metadata-add-button { display: none; }
 
-/* The ## Meta list becomes one quiet strip in reading view. */
-.markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) { display: none; }
-.markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) + .el-ul > ul {
+/* Style Settings toggle "Meta strip" (body.nl-meta-strip, off by default): a ## Meta section
+   becomes one quiet strip in reading view, heading hidden. */
+body.nl-meta-strip .markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) { display: none; }
+body.nl-meta-strip .markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) + .el-ul > ul {
   display: flex;
   flex-wrap: wrap;
   gap: 4px 20px;
@@ -388,7 +459,7 @@ body.is-mobile {
   font-size: 0.85em;
   color: var(--text-muted);
 }
-.markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) + .el-ul > ul > li {
+body.nl-meta-strip .markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) + .el-ul > ul > li {
   margin: 0;
   padding: 0;
   max-width: 100%;
@@ -396,10 +467,10 @@ body.is-mobile {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) + .el-ul > ul > li::marker { content: none; }
-.markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) + .el-ul > ul > li > .list-bullet,
-.markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) + .el-ul > ul > li > .list-collapse-indicator { display: none; }
-.markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) + .el-ul > ul > li:last-child:not(:first-child) { flex: 1 1 0; min-width: 16rem; }
+body.nl-meta-strip .markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) + .el-ul > ul > li::marker { content: none; }
+body.nl-meta-strip .markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) + .el-ul > ul > li > .list-bullet,
+body.nl-meta-strip .markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) + .el-ul > ul > li > .list-collapse-indicator { display: none; }
+body.nl-meta-strip .markdown-preview-view .el-h2:has(> h2[data-heading="Meta"]) + .el-ul > ul > li:last-child:not(:first-child) { flex: 1 1 0; min-width: 16rem; }
 
 /* Dataview inline fields: one outlined chip per key and value. */
 body .dataview.inline-field {
@@ -518,7 +589,7 @@ body .dataview.inline-field-value { color: var(--text-normal); padding: 0 0 0 0.
 /* The frontmatter, for vaults that show properties as YAML source. One size on every page,
    13 px monospace in the muted ink, so it reads as data, not as the note. Obsidian sets the
    text to --font-smaller inside the line; inheriting keeps it from shrinking twice. */
-.markdown-source-view.mod-cm6 .cm-line:has(> .cm-hmd-frontmatter) { font-size: 13px; line-height: 1.6; }
+.markdown-source-view.mod-cm6 .cm-line:has(> .cm-hmd-frontmatter) { font-size: var(--nl-frontmatter-size); line-height: 1.6; }
 .markdown-source-view.mod-cm6 .cm-hmd-frontmatter { color: var(--text-muted); font-size: inherit; }
 
 /* ---------- 8. Callouts, tasks, tags ---------- */

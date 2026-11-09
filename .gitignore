@@ -10,3 +10,7 @@ demo/.obsidian/core-plugins.json
 # The live harness: screenshots and the test Obsidian's own settings folder.
 tools/live/shots/
 tools/live/userdata/
+
+# Plugins installed in the demo vault for testing (Style Settings).
+demo/.obsidian/plugins/
+demo/.obsidian/community-plugins.json

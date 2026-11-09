@@ -9,6 +9,7 @@ All notable changes to Nord Lane. The format follows [Keep a Changelog](https://
 - CI checks that the committed `theme.css` and `manifest.json` match the source, and that the manifest and cover meet Obsidian's requirements.
 - `AGENTS.md`: the rules for agents working in this repo.
 - `tools/contrast.py`: a contrast audit of the theme's text and background pairs in both modes, run in CI.
+- Style Settings support: column width, table bleed, prose measure, table text size and frontmatter size (`--nl-frontmatter-size`, new), plus a Meta-strip toggle.
 - `cssclasses: [prose]`: an opt-in reading measure (`--nl-prose-max`, 46rem) for paragraphs, lists, headings and quotes, while tables, code, callouts and embeds keep the full column.
 
 ### Changed
@@ -18,6 +19,8 @@ All notable changes to Nord Lane. The format follows [Keep a Changelog](https://
 - Colours meet WCAG AA everywhere text sits on them. Light mode: callout titles, the green and amber tones, the accent fill behind badges, and the darkest heat shade are a step darker. Dark mode: the error and question callouts and faint text are a step lighter, and the middle heat shade is lighter, with dark text. New `--nl-on-heat-1/2/3` tokens set the text colour on each heat shade.
 
 - Cover-card filters are generic. A view hides the cards that don't match by setting the `hidden` attribute, and the theme hides `.gc-card[hidden]`. The four rules that matched particular `data-filter` values are gone, so a view that relied on them must now set `hidden`.
+
+- The `## Meta` strip in reading view is opt-in: Style Settings, Nord Lane, Meta strip (it adds `nl-meta-strip` to the body). It was keyed on the heading's text and applied to every vault.
 
 ### Removed
 
