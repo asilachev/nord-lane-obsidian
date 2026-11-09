@@ -9,6 +9,14 @@ All notable changes to Nord Lane. The format follows [Keep a Changelog](https://
 - CI checks that the committed `theme.css` and `manifest.json` match the source, and that the manifest and cover meet Obsidian's requirements.
 - `AGENTS.md`: the rules for agents working in this repo.
 
+### Changed
+
+- Properties in reading view follow Obsidian's "Properties in document" setting instead of always being hidden. They're set quietly, 13 px with monospace keys. `cssclasses: [hide-properties]` hides them for one note, and notes with `cssclasses: [dashboard]` hide them too. The Add property button stays out of reading view.
+
+### Removed
+
+- The `show_properties` and `show_add_property_btn` classes. Properties show by Obsidian's setting now, so opting in is no longer needed.
+
 ### Fixed
 
 - Callout titles and icons take their type's Nord colour again (Obsidian 1.15 reads `--callout-color` as a whole colour), and the tint behind each callout is a little stronger, so a warning no longer looks like a note.
